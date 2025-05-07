@@ -1,6 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 
-// import { HomeCardsView } from '../../sections/home/view/index.js';
+import { BusinessInsightsCardsView } from '../../sections/businessInsights/view/index.js';
+import BlogContentCardsView from '../../sections/blogContent/view/blogContent-cards-view.jsx';
+import HomeCardsView from '../../sections/home/view/home-cards-view.jsx';
 
 // ----------------------------------------------------------------------
 
@@ -11,7 +13,7 @@ export default function UserProfilePage() {
         <title> Dashboard: Home</title>
       </Helmet>
 
-      {/*<HomeCardsView />*/}
+      <HomeCardsView />
     </>
   );
 }
