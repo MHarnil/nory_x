@@ -19,6 +19,8 @@ import { useState } from 'react';
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 import Chip from '@mui/material/Chip';
 import AnalyticsWidgetSummary from '../overview/analytics/analytics-widget-summary.jsx';
+import Label from 'src/components/label';
+import { alpha } from '@mui/material/styles';
 
 const issues = [
   {
@@ -49,6 +51,7 @@ const issues = [
       'Develop a seasonal inventory management strategy to reduce stock levels during the off-season and increase them proactively before the peak season. Leverage historical sales data to forecast demand and adjust production/procurement plans accordingly. Implement promotional campaigns to increase turnover during off-season.',
   },
 ];
+const STATUS_OPTIONS = [{ value: 'all', label: 'All' },{ value: 'High', label: 'High' },{ value: 'Medium', label: 'Medium' },{ value: 'Low', label: 'Low' },];
 
 export default function PotentialIssuesCard() {
   const [tab, setTab] = useState(0);
@@ -111,6 +114,40 @@ export default function PotentialIssuesCard() {
 
         <Box my={2}>
           <TextField fullWidth size="small" placeholder="Filter table..." />
+          <Tabs
+            // value={filters.status}
+            // onChange={handleFilterStatus}
+            sx={{
+              px: 2.5,
+              boxShadow: (theme) => `inset 0 -2px 0 0 ${alpha(theme.palette.grey[500], 0.08)}`,
+            }}
+          >
+            {STATUS_OPTIONS?.map((tab) => (
+              <Tab
+                key={tab.value}
+                iconPosition="end"
+                value={tab.value}
+                label={tab.label}
+                icon={
+                  <Label
+                    variant={
+                      ((tab.value === 'all') && 'filled') || 'soft'
+                    }
+                    color={
+                      (tab.value === 'High' && 'error') ||
+                      (tab.value === 'Medium' && 'warning') ||
+                      (tab.value === 'Low' && 'info') ||
+                      'default'
+                    }
+                  >
+                    {/*{['active', 'pending', 'banned', 'rejected'].includes(tab.value)*/}
+                    {/*  ? tableData.filter((user) => user.status === tab.value).length*/}
+                    {/*  : tableData.length}*/}10
+                  </Label>
+                }
+              />
+            ))}
+          </Tabs>
         </Box>
 
         <TableContainer>
