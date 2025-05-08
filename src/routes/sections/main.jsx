@@ -22,7 +22,7 @@ const ComingSoonPage = lazy(() => import('src/pages/coming-soon'));
 const MaintenancePage = lazy(() => import('src/pages/maintenance'));
 // PRODUCT
 const ProductListPage = lazy(() => import('src/pages/product/list'));
-const ProductDetailsPage = lazy(() => import('src/pages/product/details'));
+const ProductDetailsPage = lazy(() => import('src/pages/product/details.jsx'));
 const ProductCheckoutPage = lazy(() => import('src/pages/product/checkout'));
 // BLOG
 const PostListPage = lazy(() => import('src/pages/post/list'));

@@ -39,9 +39,9 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
-import ProductsTableRow from '../products-table-row.jsx';
-import ProductsTableToolbar from '../products-table-toolbar.jsx';
-import ProductsTableFiltersResult from '../products-table-filters-result.jsx';
+import ProductTableRow from '../product-table-row.jsx';
+import ProductTableToolbar from '../product-table-toolbar.jsx';
+import ProductTableFiltersResult from '../product-table-filters-result.jsx';
 import { Grid } from '@mui/material';
 import AnalyticsWidgetSummary from '../../overview/analytics/analytics-widget-summary.jsx';
 import Typography from '@mui/material/Typography';
@@ -240,7 +240,7 @@ const defaultFilters = {
 
 // ----------------------------------------------------------------------
 
-export default function ProductsListView() {
+export default function ProductListView() {
   const { enqueueSnackbar } = useSnackbar();
 
   const table = useTable({ defaultOrderBy: 'orderNumber' });
@@ -380,7 +380,7 @@ export default function ProductsListView() {
 
           {tab === 0 && (
             <>
-              <ProductsTableToolbar
+              <ProductTableToolbar
                 filters={filters}
                 onFilters={handleFilters}
                 //
@@ -388,7 +388,7 @@ export default function ProductsListView() {
               />
 
               {canReset && (
-                <ProductsTableFiltersResult
+                <ProductTableFiltersResult
                   filters={filters}
                   onFilters={handleFilters}
                   //
@@ -437,7 +437,7 @@ export default function ProductsListView() {
                           table.page * table.rowsPerPage + table.rowsPerPage
                         )
                         .map((row) => (
-                          <ProductsTableRow
+                          <ProductTableRow
                             key={row.id}
                             row={row}
                             selected={table.selected.includes(row.id)}

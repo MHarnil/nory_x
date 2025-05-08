@@ -12,7 +12,7 @@ import { shortDateLabel } from 'src/components/custom-date-range-picker';
 
 // ----------------------------------------------------------------------
 
-export default function ProductsTableFiltersResult({
+export default function ProductTableFiltersResult({
   filters,
   onFilters,
   //
@@ -65,7 +65,7 @@ export default function ProductsTableFiltersResult({
   );
 }
 
-ProductsTableFiltersResult.propTypes = {
+ProductTableFiltersResult.propTypes = {
   filters: PropTypes.object,
   onFilters: PropTypes.func,
   onResetFilters: PropTypes.func,

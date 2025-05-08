@@ -25,7 +25,7 @@ import CustomPopover, { usePopover } from 'src/components/custom-popover';
 
 // ----------------------------------------------------------------------
 
-export default function ProductsTableRow({ row, selected, onViewRow, onSelectRow, onDeleteRow }) {
+export default function ProductTableRow({ row, selected, onViewRow, onSelectRow, onDeleteRow }) {
   const { id, productName, status, type, category, variants } = row;
 
   const confirm = useBoolean();
@@ -180,7 +180,7 @@ export default function ProductsTableRow({ row, selected, onViewRow, onSelectRow
   );
 }
 
-ProductsTableRow.propTypes = {
+ProductTableRow.propTypes = {
   row: PropTypes.object,
   selected: PropTypes.bool,
   onViewRow: PropTypes.func,
