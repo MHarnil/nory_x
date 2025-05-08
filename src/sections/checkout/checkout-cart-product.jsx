@@ -12,10 +12,9 @@ import Typography from '@mui/material/Typography';
 import { fCurrency } from 'src/utils/format-number';
 
 import Label from 'src/components/label';
-import Iconify from 'src/components/iconify';
+
 import { ColorPreview } from 'src/components/color-utils';
 
-import IncrementerButton from '../product/common/incrementer-button';
 
 // ----------------------------------------------------------------------
 
