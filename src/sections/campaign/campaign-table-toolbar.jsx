@@ -14,7 +14,7 @@ import CustomPopover, { usePopover } from 'src/components/custom-popover';
 
 // ----------------------------------------------------------------------
 
-export default function ProductTableToolbar({ filters, onFilters, dateError }) {
+export default function CampaignTableToolbar({ filters, onFilters, dateError }) {
   const popover = usePopover();
 
   const handleFilterName = useCallback(
@@ -106,7 +106,7 @@ export default function ProductTableToolbar({ filters, onFilters, dateError }) {
   );
 }
 
-ProductTableToolbar.propTypes = {
+CampaignTableToolbar.propTypes = {
   dateError: PropTypes.bool,
   filters: PropTypes.object,
   onFilters: PropTypes.func,

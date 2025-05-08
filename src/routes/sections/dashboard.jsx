@@ -20,25 +20,25 @@ const UserEditPage = lazy(() => import('src/pages/dashboard/user/edit'));
 // BusinessInfo
 const BusinessInfoCardPage = lazy(() => import('src/pages/dashboard/user/BusinessInfo'));
 // BusinessInfo
-const BusinessInsightsPage = lazy(() => import('src/pages/dashboard/businessInsights'));
+const BusinessInsightsPage = lazy(() => import('src/pages/dashboard/businessInsight.jsx'));
 // PotentialIssuesPage
-const PotentialIssuesPage = lazy(() => import('src/pages/dashboard/potentialIssues'));
+const PotentialIssuePage = lazy(() => import('src/pages/dashboard/potentialIssue.jsx'));
 // BlogContentPage
 const BlogContentPage = lazy(() => import('src/pages/dashboard/blogContent'));
-// CampaignsPage
-const CampaignsPage = lazy(() => import('src/pages/dashboard/campaigns'));
+// CampaignPage
+const CampaignPage = lazy(() => import('src/pages/dashboard/campaign.jsx'));
 // ProductSeoPage
 const ProductSeoPage = lazy(() => import('src/pages/dashboard/productSeo'));
 // MediaSeoPage
 const MediaSeoPage = lazy(() => import('src/pages/dashboard/mediaSeo'));
 // ShopSeoPage
 const ShopSeoPage = lazy(() => import('src/pages/dashboard/shopSeo'));
-// ProductsPage
-const ProductsPage = lazy(() => import('src/pages/dashboard/products'));
-// VariantsPage
-const VariantsPage = lazy(() => import('src/pages/dashboard/variants'));
-// InventoryPage
-const InventoryPage = lazy(() => import('src/pages/dashboard/inventory'));
+// ProductPage
+const ProductPage = lazy(() => import('src/pages/dashboard/product'));
+// VariantPage
+const VariantPage = lazy(() => import('src/pages/dashboard/variant.jsx'));
+// InventorysPage
+const InventorysPage = lazy(() => import('src/pages/dashboard/inventorys.jsx'));
 // DstrategyPage
 const DstrategyPage = lazy(() => import('src/pages/dashboard/dstrategy'));
 // OrdersPage
@@ -63,15 +63,15 @@ export const dashboardRoutes = [
     children: [
       { element: <IndexPage />, index: true },
       { path: 'business-insights', element: <BusinessInsightsPage /> },
-      { path: 'potential-issues', element: <PotentialIssuesPage /> },
+      { path: 'potential-issues', element: <PotentialIssuePage /> },
       { path: 'blog-content', element: <BlogContentPage /> },
-      { path: 'campaigns', element: <CampaignsPage /> },
+      { path: 'campaigns', element: <CampaignPage /> },
       { path: 'product-seo', element: <ProductSeoPage /> },
       { path: 'media-seo', element: <MediaSeoPage /> },
       { path: 'shop-seo', element: <ShopSeoPage /> },
-      { path: 'products', element: <ProductsPage /> },
-      { path: 'variants', element: <VariantsPage /> },
-      { path: 'inventory', element: <InventoryPage /> },
+      { path: 'products', element: <ProductPage /> },
+      { path: 'variants', element: <VariantPage /> },
+      { path: 'inventory', element: <InventorysPage /> },
       { path: 'dstrategy', element: <DstrategyPage /> },
       { path: 'orders', element: <OrdersPage /> },
       { path: 'home', element: <HomePage /> },

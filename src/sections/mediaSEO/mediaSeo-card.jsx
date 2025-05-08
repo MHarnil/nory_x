@@ -33,7 +33,7 @@ const mockData = [
   {
     id: 74,
     name: 'THE COLLECTION SNOWBOARD',
-    image: 'https://example.com/images/snowboard1.png',
+    image: 'https://api-prod-minimal-v700.pages.dev/assets/images/m-product/product-1.webp',
     currentAltText: 'Snowboard with Blue Mount...',
     suggestedAltText: 'Blue Mountain Snowboard',
     suggestedDescription: 'Explore the slopes with the Blue Mountain...',
@@ -41,7 +41,7 @@ const mockData = [
   {
     id: 75,
     name: 'THE MULTI-MANAGED SNOWBOARD',
-    image: 'https://example.com/images/snowboard2.png',
+    image: 'https://api-prod-minimal-v700.pages.dev/assets/images/m-product/product-1.webp',
     currentAltText: 'SusTern Acme Snowboard...',
     suggestedAltText: 'Pink & Yellow Graphic Snowboard',
     suggestedDescription: 'Explore the SusTern Acme...',
@@ -49,7 +49,7 @@ const mockData = [
   {
     id: 74,
     name: 'THE COLLECTION SNOWBOARD',
-    image: 'https://example.com/images/snowboard1.png',
+    image: 'https://api-prod-minimal-v700.pages.dev/assets/images/m-product/product-1.webp',
     currentAltText: 'Snowboard with Blue Mount...',
     suggestedAltText: 'Blue Mountain Snowboard',
     suggestedDescription: 'Explore the slopes with the Blue Mountain...',
@@ -57,7 +57,7 @@ const mockData = [
   {
     id: 75,
     name: 'THE MULTI-MANAGED SNOWBOARD',
-    image: 'https://example.com/images/snowboard2.png',
+    image: 'https://api-prod-minimal-v700.pages.dev/assets/images/m-product/product-1.webp',
     currentAltText: 'SusTern Acme Snowboard...',
     suggestedAltText: 'Pink & Yellow Graphic Snowboard',
     suggestedDescription: 'Explore the SusTern Acme...',
@@ -65,7 +65,7 @@ const mockData = [
   {
     id: 74,
     name: 'THE COLLECTION SNOWBOARD',
-    image: 'https://example.com/images/snowboard1.png',
+    image: 'https://api-prod-minimal-v700.pages.dev/assets/images/m-product/product-1.webp',
     currentAltText: 'Snowboard with Blue Mount...',
     suggestedAltText: 'Blue Mountain Snowboard',
     suggestedDescription: 'Explore the slopes with the Blue Mountain...',
@@ -73,7 +73,7 @@ const mockData = [
   {
     id: 75,
     name: 'THE MULTI-MANAGED SNOWBOARD',
-    image: 'https://example.com/images/snowboard2.png',
+    image: 'https://api-prod-minimal-v700.pages.dev/assets/images/m-product/product-1.webp',
     currentAltText: 'SusTern Acme Snowboard...',
     suggestedAltText: 'Pink & Yellow Graphic Snowboard',
     suggestedDescription: 'Explore the SusTern Acme...',

@@ -39,38 +39,92 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
-import ProductTableRow from '../product-table-row.jsx';
-import ProductTableToolbar from '../product-table-toolbar.jsx';
-import ProductTableFiltersResult from '../product-table-filters-result.jsx';
+import PotentialIssueTableRow from '../potentialIssue-table-row.jsx';
+import PotentialIssueTableToolbar from '../potentialIssue-table-toolbar.jsx';
+import PotentialIssueTableFiltersResult from '../potentialIssue-table-filters-result.jsx';
 import { Grid } from '@mui/material';
 import AnalyticsWidgetSummary from '../../overview/analytics/analytics-widget-summary.jsx';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-const products = [
-  { id: 76, productName: "GREEN SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 75, productName: "RED SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 82, productName: "THE COLLECTION SNOWBOARD: HYDROGEN", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 77, productName: "THE COLLECTION SNOWBOARD: LIQUID", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 80, productName: "THE COLLECTION SNOWBOARD: OXYGEN", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 83, productName: "THE COMPARE AT PRICE SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 81, productName: "THE MULTI-LOCATION SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 78, productName: "THE MULTI-MANAGED SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 79, productName: "THE 3P FULFILLED SNOWBOARD", status: "ACTIVE", type: "NEW", category: "Snowboards", variants: 1 },
-  { id: 84, productName: "THE COMPLETE SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 5 },
-  { id: 85, productName: "BLACK SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 86, productName: "WHITE SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 2 },
-  { id: 87, productName: "SNOWBOARD PRO: ALPHA", status: "ACTIVE", type: "NEW", category: "Snowboards", variants: 3 },
-  { id: 88, productName: "SNOWBOARD PRO: BETA", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 89, productName: "SNOWBOARD PRO: GAMMA", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 90, productName: "SNOWBOARD PRO: DELTA", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 91, productName: "LIMITED EDITION SNOWBOARD", status: "ACTIVE", type: "NEW", category: "Snowboards", variants: 2 },
-  { id: 92, productName: "BASIC SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 93, productName: "URBAN SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 4 },
-  { id: 94, productName: "FREESTYLE SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 2 }
+const issuesData = [
+  {
+    id: 1,
+    issue: 'Seasonal Demand Fluctuations Ignored',
+    description: 'The consistent monitoring of snowboard sales demand was not implemented.',
+    priority: 'High',
+    recommendation:
+      'Implement a seasonal demand forecasting model to better predict Implement Implement a seasonal demand forecasting model to better predict Implem Implement a seasonal demand forecasting model to better predict Implem a seasonal demand forecasting model to better predict  inventory needs.',
+  },
+  {
+    id: 2,
+    issue: 'Zero incoming shipments across all products',
+    description: 'All products listed in the provided data show no incoming shipment records.',
+    priority: 'High',
+    recommendation:
+      'Confirm orders with suppliers to clarify shipment timelines and avoid stockouts.',
+  },
+  {
+    id: 3,
+    issue: 'Seasonality of Snowboard Sales',
+    description:
+      'The data includes inventory levels in March despite snowboards selling primarily in winter.',
+    priority: 'High',
+    recommendation:
+      'Develop a seasonal inventory management strategy to reduce off-season surplus.',
+  },
+  {
+    id: 4,
+    issue: 'Inaccurate Supplier Lead Times',
+    description: 'Lead times from suppliers are not matching the actual delivery records.',
+    priority: 'Medium',
+    recommendation: 'Audit supplier performance and update lead time assumptions accordingly.',
+  },
+  {
+    id: 5,
+    issue: 'Overstock of Winter Gear',
+    description:
+      'Current stock levels of winter gear exceed forecasted demand for the next season.',
+    priority: 'Medium',
+    recommendation: 'Run clearance promotions or redirect inventory to outlets.',
+  },
+  {
+    id: 6,
+    issue: 'Missing Inventory Data',
+    description: 'Several products have incomplete or missing inventory records in the system.',
+    priority: 'High',
+    recommendation: 'Conduct a full inventory audit and reconcile missing data.',
+  },
+  {
+    id: 7,
+    issue: 'Low Visibility into Supplier Capacity',
+    description: 'Limited insight into supplier production capacity may delay order fulfillment.',
+    priority: 'Low',
+    recommendation: 'Establish regular supplier reporting on production capabilities.',
+  },
+  {
+    id: 8,
+    issue: 'Slow-moving SKUs Identified',
+    description: 'Certain SKUs have not moved in over three months.',
+    priority: 'Low',
+    recommendation: 'Consider bundling or discounting slow-moving items.',
+  },
+  {
+    id: 9,
+    issue: 'Unbalanced Inventory Distribution',
+    description:
+      'Inventory is unevenly distributed across locations, causing stockouts in some and excess in others.',
+    priority: 'Medium',
+    recommendation: 'Optimize stock transfers to balance distribution across the network.',
+  },
+  {
+    id: 10,
+    issue: 'Inconsistent Product Categorization',
+    description: 'Products are inconsistently categorized, impacting sales analytics accuracy.',
+    priority: 'Low',
+    recommendation: 'Standardize product taxonomy across all departments.',
+  },
 ];
-
-
 
 // ----------------------------------------------------------------------
 
@@ -86,11 +140,10 @@ const STATUS_OPTIONS = [
 
 const TABLE_HEAD = [
   { id: 'orderNumber', label: 'ID' },
-  { id: 'name', label: 'ProductName' },
-  { id: 'status', label: 'Status' },
-  { id: 'type', label: 'Type' },
-  { id: 'category', label: 'Category' },
-  { id: 'variants', label: 'Variants' },
+  { id: 'name', label: 'Issue' },
+  { id: 'createdAt', label: 'Description' },
+  { id: 'totalQuantity', label: 'Priority' },
+  { id: 'totalAmount', label: 'Recommendation' },
 ];
 
 const defaultFilters = {
@@ -100,7 +153,7 @@ const defaultFilters = {
 
 // ----------------------------------------------------------------------
 
-export default function ProductListView() {
+export default function PotentialIssueListView() {
   const { enqueueSnackbar } = useSnackbar();
 
   const table = useTable({ defaultOrderBy: 'orderNumber' });
@@ -111,7 +164,7 @@ export default function ProductListView() {
 
   const confirm = useBoolean();
 
-  const [tableData, setTableData] = useState(products);
+  const [tableData, setTableData] = useState(issuesData);
 
   const [filters, setFilters] = useState(defaultFilters);
 
@@ -194,27 +247,100 @@ export default function ProductListView() {
     <>
       <Container maxWidth={settings.themeStretch ? false : 'lg'}>
         <CustomBreadcrumbs
-          heading="Products"
+          heading="Potential Issues"
           links={[
             { name: 'Dashboard', href: paths.dashboard.root },
             { name: 'User', href: paths.dashboard.user.root },
-            { name: 'Products' },
+            { name: 'Potential Issues' },
           ]}
           sx={{ mb: { xs: 3, md: 5 } }}
         />
 
-        <Grid container spacing={3} sx={{display: 'flex', justifyContent: 'center'}}>
-          <Grid item xs={12} sm={6} md={6}>
+        <Grid container spacing={3} sx={{ mb: 8 }}>
+          <Grid item xs={12} sm={6} md={3}>
             <AnalyticsWidgetSummary
-              title="18 products"
-              total={16} // active
+              title="Recommendations"
+              total={14}
               icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
+            />
+          </Grid>
+
+          <Grid item xs={12} sm={6} md={3}>
+            <AnalyticsWidgetSummary
+              title="High Priority"
+              total={3}
+              color="info"
+              icon={<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}
+            />
+          </Grid>
+
+          <Grid item xs={12} sm={6} md={3}>
+            <AnalyticsWidgetSummary
+              title="Medium Priority"
+              total={8}
+              color="warning"
+              icon={<img alt="icon" src="/assets/icons/glass/ic_glass_buy.png" />}
+            />
+          </Grid>
+
+          <Grid item xs={12} sm={6} md={3}>
+            <AnalyticsWidgetSummary
+              title="Low Priority"
+              total={3}
+              color="error"
+              icon={<img alt="icon" src="/assets/icons/glass/ic_glass_message.png" />}
             />
           </Grid>
         </Grid>
 
-        <Card sx={{ mt:4 }}>
-          <ProductTableToolbar
+        <Box sx={{ p: 2, mt:4 }}>
+           <Typography variant="h6" gutterBottom>
+             Issues & Recommendations
+           </Typography>
+           <Typography variant="body2" color="text.secondary" gutterBottom>
+             Let&apos;s take a look at these issues! Upon selecting the &apos;Track&apos; button, a
+             list of monitored issues will be displayed under the &apos;Tracked Issues&apos; tab.
+           </Typography>
+        </Box>
+
+        <Card>
+          <Tabs
+            value={filters.priority}
+            onChange={handleFilterStatus}
+            sx={{
+              px: 2.5,
+              boxShadow: (theme) => `inset 0 -2px 0 0 ${alpha(theme.palette.grey[500], 0.08)}`,
+            }}
+          >
+            {STATUS_OPTIONS.map((tab) => (
+              <Tab
+                key={tab.value}
+                iconPosition="end"
+                value={tab.value}
+                label={tab.label}
+                icon={
+                  <Label
+                    variant={
+                      ((tab.value === 'all' || tab.value === filters.priority) && 'filled') ||
+                      'soft'
+                    }
+                    color={
+                      (tab.value === 'Medium' && 'success') ||
+                      (tab.value === 'Low' && 'warning') ||
+                      (tab.value === 'High' && 'error') ||
+                      'default'
+                    }
+                  >
+                    {['High', 'Medium', 'Low'].includes(tab.value)
+                      ? tableData.filter((item) => item.priority === tab.value).length
+                      : tableData.length}
+                  </Label>
+                }
+              />
+            ))}
+          </Tabs>
+
+          <PotentialIssueTableToolbar
             filters={filters}
             onFilters={handleFilters}
             //
@@ -222,7 +348,7 @@ export default function ProductListView() {
           />
 
           {canReset && (
-            <ProductTableFiltersResult
+            <PotentialIssueTableFiltersResult
               filters={filters}
               onFilters={handleFilters}
               //
@@ -271,7 +397,7 @@ export default function ProductListView() {
                       table.page * table.rowsPerPage + table.rowsPerPage
                     )
                     .map((row) => (
-                      <ProductTableRow
+                      <PotentialIssueTableRow
                         key={row.id}
                         row={row}
                         selected={table.selected.includes(row.id)}
@@ -348,7 +474,7 @@ function applyFilter({ inputData, comparator, filters, dateError }) {
 
   if (name) {
     inputData = inputData.filter(
-      (item) => item.productName.toLowerCase().indexOf(name.toLowerCase()) !== -1
+      (item) => item.issue.toLowerCase().indexOf(name.toLowerCase()) !== -1
     );
   }
 

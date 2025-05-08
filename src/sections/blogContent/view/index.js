@@ -1,1 +1,1 @@
-export {default as BlogContentCardsView} from './BlogContentCardsView';
+export { default as BlogContentListView } from './blogContent-list-view.jsx';

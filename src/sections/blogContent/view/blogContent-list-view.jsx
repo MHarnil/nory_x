@@ -39,38 +39,100 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
-import ProductTableRow from '../product-table-row.jsx';
-import ProductTableToolbar from '../product-table-toolbar.jsx';
-import ProductTableFiltersResult from '../product-table-filters-result.jsx';
+import BlogContentTableRow from '../blogContent-table-row.jsx';
+import BlogContentTableToolbar from '../blogContent-table-toolbar.jsx';
+import BlogContentTableFiltersResult from '../blogContent-table-filters-result.jsx';
 import { Grid } from '@mui/material';
 import AnalyticsWidgetSummary from '../../overview/analytics/analytics-widget-summary.jsx';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-const products = [
-  { id: 76, productName: "GREEN SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 75, productName: "RED SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 82, productName: "THE COLLECTION SNOWBOARD: HYDROGEN", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 77, productName: "THE COLLECTION SNOWBOARD: LIQUID", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 80, productName: "THE COLLECTION SNOWBOARD: OXYGEN", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 83, productName: "THE COMPARE AT PRICE SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 81, productName: "THE MULTI-LOCATION SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 78, productName: "THE MULTI-MANAGED SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 79, productName: "THE 3P FULFILLED SNOWBOARD", status: "ACTIVE", type: "NEW", category: "Snowboards", variants: 1 },
-  { id: 84, productName: "THE COMPLETE SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 5 },
-  { id: 85, productName: "BLACK SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 86, productName: "WHITE SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 2 },
-  { id: 87, productName: "SNOWBOARD PRO: ALPHA", status: "ACTIVE", type: "NEW", category: "Snowboards", variants: 3 },
-  { id: 88, productName: "SNOWBOARD PRO: BETA", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 89, productName: "SNOWBOARD PRO: GAMMA", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 90, productName: "SNOWBOARD PRO: DELTA", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 91, productName: "LIMITED EDITION SNOWBOARD", status: "ACTIVE", type: "NEW", category: "Snowboards", variants: 2 },
-  { id: 92, productName: "BASIC SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 93, productName: "URBAN SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 4 },
-  { id: 94, productName: "FREESTYLE SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 2 }
+const campaigns = [
+  {
+    id: 27,
+    title: 'What to Pack for a Canadian Ski Adventure: Essentials & Extras',
+    category: 'Gear & Equipment',
+    contentDate: '2025-05-04',
+    action: 'Upload',
+  },
+  {
+    id: 28,
+    title: 'Essential Gear Guide for Backcountry Skiing & Snowboarding in Canada',
+    category: 'Backcountry Safety & Education',
+    contentDate: '2025-05-03',
+    action: 'None',
+  },
+  {
+    id: 29,
+    title: 'Top Winter Destinations in Canada for Snowboarders',
+    category: 'Travel Guides',
+    contentDate: '2025-05-04',
+    action: 'Upload',
+  },
+  {
+    id: 30,
+    title: 'Snowboarding Gear: What You Need and Why It Matters',
+    category: 'Gear & Equipment',
+    contentDate: '2025-05-05',
+    action: 'Upload',
+  },
+  {
+    id: 31,
+    title: 'Navigating Backcountry: Tips from Canadian Pros',
+    category: 'Backcountry Safety & Education',
+    contentDate: '2025-05-06',
+    action: 'Upload',
+  },
+  {
+    id: 32,
+    title: 'Skiing for Beginners: A Step-by-Step Guide',
+    category: 'Skills & Techniques',
+    contentDate: '2025-05-07',
+    action: 'None',
+  },
+  {
+    id: 33,
+    title: 'Exploring Winter Trails: Best Routes in Alberta',
+    category: 'Travel & Adventure',
+    contentDate: '2025-05-08',
+    action: 'Upload',
+  },
+  {
+    id: 34,
+    title: 'How to Maintain Your Ski Equipment Through the Season',
+    category: 'Gear Maintenance',
+    contentDate: '2025-05-09',
+    action: 'None',
+  },
+  {
+    id: 35,
+    title: 'Choosing the Right Snowboard: A Guide for Intermediate Riders',
+    category: 'Gear & Equipment',
+    contentDate: '2025-05-10',
+    action: 'None',
+  },
+  {
+    id: 36,
+    title: 'The Science Behind Avalanche Transceivers',
+    category: 'Safety Tech',
+    contentDate: '2025-05-11',
+    action: 'Upload',
+  },
+  {
+    id: 37,
+    title: 'Off-the-Grid Winter Adventures in the Yukon',
+    category: 'Travel & Adventure',
+    contentDate: '2025-05-12',
+    action: 'None',
+  },
+  {
+    id: 38,
+    title: 'Understanding Snowpack: Reading Nature’s Avalanche Warning Signs',
+    category: 'Backcountry Safety',
+    contentDate: '2025-05-13',
+    action: 'None',
+  },
 ];
-
-
 
 // ----------------------------------------------------------------------
 
@@ -86,11 +148,11 @@ const STATUS_OPTIONS = [
 
 const TABLE_HEAD = [
   { id: 'orderNumber', label: 'ID' },
-  { id: 'name', label: 'ProductName' },
-  { id: 'status', label: 'Status' },
-  { id: 'type', label: 'Type' },
-  { id: 'category', label: 'Category' },
-  { id: 'variants', label: 'Variants' },
+  { id: 'title', label: 'Title' },
+  { id: 'createdAt', label: 'Category' },
+  { id: 'totalQuantity', label: 'ContentDate' },
+  { id: 'preview', label: 'Preview' },
+  { id: 'action', label: 'Action' },
 ];
 
 const defaultFilters = {
@@ -100,7 +162,7 @@ const defaultFilters = {
 
 // ----------------------------------------------------------------------
 
-export default function ProductListView() {
+export default function BlogContentListView() {
   const { enqueueSnackbar } = useSnackbar();
 
   const table = useTable({ defaultOrderBy: 'orderNumber' });
@@ -111,7 +173,7 @@ export default function ProductListView() {
 
   const confirm = useBoolean();
 
-  const [tableData, setTableData] = useState(products);
+  const [tableData, setTableData] = useState(campaigns);
 
   const [filters, setFilters] = useState(defaultFilters);
 
@@ -194,27 +256,51 @@ export default function ProductListView() {
     <>
       <Container maxWidth={settings.themeStretch ? false : 'lg'}>
         <CustomBreadcrumbs
-          heading="Products"
+          heading="Blog Content"
           links={[
             { name: 'Dashboard', href: paths.dashboard.root },
             { name: 'User', href: paths.dashboard.user.root },
-            { name: 'Products' },
+            { name: 'Blog Content' },
           ]}
           sx={{ mb: { xs: 3, md: 5 } }}
         />
 
-        <Grid container spacing={3} sx={{display: 'flex', justifyContent: 'center'}}>
-          <Grid item xs={12} sm={6} md={6}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={6} md={4}>
             <AnalyticsWidgetSummary
-              title="18 products"
-              total={16} // active
+              title="Generated"
+              total={15}
               icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
+            />
+          </Grid>
+
+          <Grid item xs={12} sm={6} md={4}>
+            <AnalyticsWidgetSummary
+              title="Uploaded"
+              total={7}
+              color="info"
+              icon={<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}
+            />
+          </Grid>
+
+          <Grid item xs={12} sm={6} md={4}>
+            <AnalyticsWidgetSummary
+              title="Time Saved (hrs)"
+              total={15.7}
+              color="warning"
+              icon={<img alt="icon" src="/assets/icons/glass/ic_glass_buy.png" />}
             />
           </Grid>
         </Grid>
 
-        <Card sx={{ mt:4 }}>
-          <ProductTableToolbar
+        <Box sx={{ p: 2, mt: 4 }}>
+          <Typography variant="h6" gutterBottom>
+            Contextual Blogs
+          </Typography>
+        </Box>
+
+        <Card>
+          <BlogContentTableToolbar
             filters={filters}
             onFilters={handleFilters}
             //
@@ -222,7 +308,7 @@ export default function ProductListView() {
           />
 
           {canReset && (
-            <ProductTableFiltersResult
+            <BlogContentTableFiltersResult
               filters={filters}
               onFilters={handleFilters}
               //
@@ -271,7 +357,7 @@ export default function ProductListView() {
                       table.page * table.rowsPerPage + table.rowsPerPage
                     )
                     .map((row) => (
-                      <ProductTableRow
+                      <BlogContentTableRow
                         key={row.id}
                         row={row}
                         selected={table.selected.includes(row.id)}
@@ -348,7 +434,7 @@ function applyFilter({ inputData, comparator, filters, dateError }) {
 
   if (name) {
     inputData = inputData.filter(
-      (item) => item.productName.toLowerCase().indexOf(name.toLowerCase()) !== -1
+      (item) => item.title.toLowerCase().indexOf(name.toLowerCase()) !== -1
     );
   }
 

@@ -1,17 +1,17 @@
 import { Helmet } from 'react-helmet-async';
 
-import HomeCardsView from '../../sections/home/view/home-cards-view.jsx';
+import { ProductListView } from '../../sections/product/view/index.js';
 
 // ----------------------------------------------------------------------
 
-export default function UserProfilePage() {
+export default function ProductsPage() {
   return (
     <>
       <Helmet>
-        <title> Dashboard: Home</title>
+        <title> Dashboard: Products</title>
       </Helmet>
 
-      <HomeCardsView />
+      <ProductListView />
     </>
   );
 }

@@ -39,36 +39,97 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
-import ProductTableRow from '../product-table-row.jsx';
-import ProductTableToolbar from '../product-table-toolbar.jsx';
-import ProductTableFiltersResult from '../product-table-filters-result.jsx';
+import VariantTableRow from '../variant-table-row.jsx';
+import VariantTableToolbar from '../variant-table-toolbar.jsx';
+import VariantTableFiltersResult from '../variant-table-filters-result.jsx';
 import { Grid } from '@mui/material';
 import AnalyticsWidgetSummary from '../../overview/analytics/analytics-widget-summary.jsx';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-const products = [
-  { id: 76, productName: "GREEN SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 75, productName: "RED SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 82, productName: "THE COLLECTION SNOWBOARD: HYDROGEN", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 77, productName: "THE COLLECTION SNOWBOARD: LIQUID", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 80, productName: "THE COLLECTION SNOWBOARD: OXYGEN", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 83, productName: "THE COMPARE AT PRICE SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 81, productName: "THE MULTI-LOCATION SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 78, productName: "THE MULTI-MANAGED SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 79, productName: "THE 3P FULFILLED SNOWBOARD", status: "ACTIVE", type: "NEW", category: "Snowboards", variants: 1 },
-  { id: 84, productName: "THE COMPLETE SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 5 },
-  { id: 85, productName: "BLACK SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 86, productName: "WHITE SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 2 },
-  { id: 87, productName: "SNOWBOARD PRO: ALPHA", status: "ACTIVE", type: "NEW", category: "Snowboards", variants: 3 },
-  { id: 88, productName: "SNOWBOARD PRO: BETA", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 89, productName: "SNOWBOARD PRO: GAMMA", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 90, productName: "SNOWBOARD PRO: DELTA", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 91, productName: "LIMITED EDITION SNOWBOARD", status: "ACTIVE", type: "NEW", category: "Snowboards", variants: 2 },
-  { id: 92, productName: "BASIC SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 93, productName: "URBAN SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 4 },
-  { id: 94, productName: "FREESTYLE SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 2 }
+const variantsData = [
+  {
+    id: 123,
+    variantName: "THE COMPLETE SNOWBOARD - ICE",
+    forSale: "Yes",
+    cost: "0.00 currency code",
+    price: "699.95 CAD",
+    inventory: 1901,
+  },
+  {
+    id: 122,
+    variantName: "THE COMPARE AT PRICE SNOWBOARD",
+    forSale: "Yes",
+    cost: "0.00 currency code",
+    price: "785.95 CAD",
+    inventory: 1732,
+  },
+  {
+    id: 119,
+    variantName: "THE COLLECTION SNOWBOARD: OXYGEN",
+    forSale: "Yes",
+    cost: "0.00 currency code",
+    price: "1025.00 CAD",
+    inventory: 1715,
+  },
+  {
+    id: 117,
+    variantName: "THE MULTI-MANAGED SNOWBOARD",
+    forSale: "Yes",
+    cost: "0.00 currency code",
+    price: "629.95 CAD",
+    inventory: 1104,
+  },
+  {
+    id: 116,
+    variantName: "THE COLLECTION SNOWBOARD: LIQUID",
+    forSale: "Yes",
+    cost: "0.00 currency code",
+    price: "749.95 CAD",
+    inventory: 1010,
+  },
+  {
+    id: 120,
+    variantName: "THE MULTI-LOCATION SNOWBOARD",
+    forSale: "Yes",
+    cost: "0.00 currency code",
+    price: "729.95 CAD",
+    inventory: 936,
+  },
+  {
+    id: 121,
+    variantName: "THE COLLECTION SNOWBOARD: HYDROGEN",
+    forSale: "Yes",
+    cost: "0.00 currency code",
+    price: "600.00 CAD",
+    inventory: 726,
+  },
+  {
+    id: 118,
+    variantName: "THE 3P FULFILLED SNOWBOARD",
+    forSale: "No",
+    cost: "0.00 currency code",
+    price: "2629.95 CAD",
+    inventory: 0,
+  },
+  {
+    id: 115,
+    variantName: "GREEN SNOWBOARD",
+    forSale: "Yes",
+    cost: "0.00 currency code",
+    price: "100.00 CAD",
+    inventory: 0,
+  },
+  {
+    id: 114,
+    variantName: "RED SNOWBOARD",
+    forSale: "Yes",
+    cost: "0.00 currency code",
+    price: "100.00 CAD",
+    inventory: 0,
+  },
 ];
+
 
 
 
@@ -86,11 +147,11 @@ const STATUS_OPTIONS = [
 
 const TABLE_HEAD = [
   { id: 'orderNumber', label: 'ID' },
-  { id: 'name', label: 'ProductName' },
-  { id: 'status', label: 'Status' },
-  { id: 'type', label: 'Type' },
-  { id: 'category', label: 'Category' },
-  { id: 'variants', label: 'Variants' },
+  { id: 'name', label: 'VariantName' },
+  { id: 'forsale', label: 'ForSale' },
+  { id: 'cost', label: 'Cost' },
+  { id: 'price', label: 'Price' },
+  { id: 'inventory', label: 'Inventory' },
 ];
 
 const defaultFilters = {
@@ -100,7 +161,7 @@ const defaultFilters = {
 
 // ----------------------------------------------------------------------
 
-export default function ProductListView() {
+export default function VariantListView() {
   const { enqueueSnackbar } = useSnackbar();
 
   const table = useTable({ defaultOrderBy: 'orderNumber' });
@@ -111,7 +172,7 @@ export default function ProductListView() {
 
   const confirm = useBoolean();
 
-  const [tableData, setTableData] = useState(products);
+  const [tableData, setTableData] = useState(variantsData);
 
   const [filters, setFilters] = useState(defaultFilters);
 
@@ -194,11 +255,11 @@ export default function ProductListView() {
     <>
       <Container maxWidth={settings.themeStretch ? false : 'lg'}>
         <CustomBreadcrumbs
-          heading="Products"
+          heading="Variants"
           links={[
             { name: 'Dashboard', href: paths.dashboard.root },
             { name: 'User', href: paths.dashboard.user.root },
-            { name: 'Products' },
+            { name: 'Variants' },
           ]}
           sx={{ mb: { xs: 3, md: 5 } }}
         />
@@ -206,15 +267,15 @@ export default function ProductListView() {
         <Grid container spacing={3} sx={{display: 'flex', justifyContent: 'center'}}>
           <Grid item xs={12} sm={6} md={6}>
             <AnalyticsWidgetSummary
-              title="18 products"
-              total={16} // active
+              title="10 Variants"
+              total={9} // for sale
               icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
             />
           </Grid>
         </Grid>
 
         <Card sx={{ mt:4 }}>
-          <ProductTableToolbar
+          <VariantTableToolbar
             filters={filters}
             onFilters={handleFilters}
             //
@@ -222,7 +283,7 @@ export default function ProductListView() {
           />
 
           {canReset && (
-            <ProductTableFiltersResult
+            <VariantTableFiltersResult
               filters={filters}
               onFilters={handleFilters}
               //
@@ -271,7 +332,7 @@ export default function ProductListView() {
                       table.page * table.rowsPerPage + table.rowsPerPage
                     )
                     .map((row) => (
-                      <ProductTableRow
+                      <VariantTableRow
                         key={row.id}
                         row={row}
                         selected={table.selected.includes(row.id)}
@@ -348,7 +409,7 @@ function applyFilter({ inputData, comparator, filters, dateError }) {
 
   if (name) {
     inputData = inputData.filter(
-      (item) => item.productName.toLowerCase().indexOf(name.toLowerCase()) !== -1
+      (item) => item.variantName.toLowerCase().indexOf(name.toLowerCase()) !== -1
     );
   }
 

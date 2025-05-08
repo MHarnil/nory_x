@@ -25,8 +25,14 @@ import CustomPopover, { usePopover } from 'src/components/custom-popover';
 
 // ----------------------------------------------------------------------
 
-export default function ProductTableRow({ row, selected, onViewRow, onSelectRow, onDeleteRow }) {
-  const { id, productName, status, type, category, variants } = row;
+export default function BusinessInsightTableRow({
+  row,
+  selected,
+  onViewRow,
+  onSelectRow,
+  onDeleteRow,
+}) {
+  const { id, category, insight, strategy } = row;
 
   const confirm = useBoolean();
 
@@ -61,7 +67,7 @@ export default function ProductTableRow({ row, selected, onViewRow, onSelectRow,
             maxHeight: '4.2em',
           }}
         >
-          {productName}
+          {category}
         </Box>
       </TableCell>
 
@@ -77,58 +83,21 @@ export default function ProductTableRow({ row, selected, onViewRow, onSelectRow,
           }}
         >
           {' '}
-          {status}{' '}
+          {insight}{' '}
         </Box>
       </TableCell>
-
-      <TableCell>
-        <Box
-          sx={{
-            display: '-webkit-box',
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            maxHeight: '4.2em',
-          }}
-        >
-          {' '}
-          {type}{' '}
-        </Box>
-      </TableCell>
-      <TableCell>
-        <Box
-          sx={{
-            display: '-webkit-box',
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            maxHeight: '4.2em',
-          }}
-        >
-          {' '}
-          {category}{' '}
-        </Box>
-      </TableCell>
-      <TableCell>
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: '#1a1919',
-            border: '1px solid #000',
-            borderRadius: '4px',
-            height: '30px',
-            textAlign: 'center',
-            fontWeight: 'bold',
-            color: '#fff'
-          }}
-        >
-          {variants}
-        </Box>
-
+      <TableCell
+        sx={{
+          display: '-webkit-box',
+          WebkitLineClamp: 2,
+          WebkitBoxOrient: 'vertical',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          maxHeight: '4.2em',
+        }}
+      >
+        {' '}
+        {strategy}{' '}
       </TableCell>
     </TableRow>
   );
@@ -180,7 +149,7 @@ export default function ProductTableRow({ row, selected, onViewRow, onSelectRow,
   );
 }
 
-ProductTableRow.propTypes = {
+BusinessInsightTableRow.propTypes = {
   row: PropTypes.object,
   selected: PropTypes.bool,
   onViewRow: PropTypes.func,

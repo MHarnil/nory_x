@@ -1,36 +1,31 @@
 import PropTypes from 'prop-types';
-
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box'
 import Button from '@mui/material/Button';
-import Avatar from '@mui/material/Avatar';
-import Collapse from '@mui/material/Collapse';
 import MenuItem from '@mui/material/MenuItem';
 import TableRow from '@mui/material/TableRow';
-import Checkbox from '@mui/material/Checkbox';
 import TableCell from '@mui/material/TableCell';
-import IconButton from '@mui/material/IconButton';
-import ListItemText from '@mui/material/ListItemText';
-
 import { useBoolean } from 'src/hooks/use-boolean';
-
-import { fCurrency } from 'src/utils/format-number';
-import { fDate, fTime } from 'src/utils/format-time';
-
-import Label from 'src/components/label';
 import Iconify from 'src/components/iconify';
 import { ConfirmDialog } from 'src/components/custom-dialog';
 import CustomPopover, { usePopover } from 'src/components/custom-popover';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import { useState } from 'react';
 
 // ----------------------------------------------------------------------
 
-export default function ProductTableRow({ row, selected, onViewRow, onSelectRow, onDeleteRow }) {
-  const { id, productName, status, type, category, variants } = row;
+export default function CampaignTableRow({ row, selected, onViewRow, onSelectRow, onDeleteRow }) {
+  const { id, title, category, contentDate, action } = row;
 
   const confirm = useBoolean();
 
   const collapse = useBoolean();
+  const [uploadStatus, setUploadStatus] = useState({});
+  const handleUploadChange = (id, value) => {
+    setUploadStatus((prev) => ({ ...prev, [id]: value }));
+  };
 
   const popover = usePopover();
 
@@ -61,7 +56,22 @@ export default function ProductTableRow({ row, selected, onViewRow, onSelectRow,
             maxHeight: '4.2em',
           }}
         >
-          {productName}
+          {title}
+        </Box>
+      </TableCell>
+
+      <TableCell>
+        <Box
+          sx={{
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            maxHeight: '4.2em',
+          }}
+        >
+          {category}
         </Box>
       </TableCell>
 
@@ -77,58 +87,40 @@ export default function ProductTableRow({ row, selected, onViewRow, onSelectRow,
           }}
         >
           {' '}
-          {status}{' '}
+          {contentDate}{' '}
         </Box>
       </TableCell>
 
-      <TableCell>
-        <Box
-          sx={{
-            display: '-webkit-box',
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            maxHeight: '4.2em',
-          }}
-        >
-          {' '}
-          {type}{' '}
-        </Box>
-      </TableCell>
-      <TableCell>
-        <Box
-          sx={{
-            display: '-webkit-box',
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            maxHeight: '4.2em',
-          }}
-        >
-          {' '}
-          {category}{' '}
-        </Box>
-      </TableCell>
       <TableCell>
         <Box
           sx={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: '#1a1919',
-            border: '1px solid #000',
-            borderRadius: '4px',
-            height: '30px',
-            textAlign: 'center',
-            fontWeight: 'bold',
-            color: '#fff'
+            height: '100%',
           }}
         >
-          {variants}
+          <VisibilityIcon />
         </Box>
+      </TableCell>
 
+      <TableCell>
+        <RadioGroup
+          row
+          value={uploadStatus[action] || 'none'}
+          onChange={(e) => handleUploadChange(action, e.target.value)}
+        >
+          <FormControlLabel
+            value="upload"
+            control={<Radio size="small" />}
+            label="Upload"
+          />
+          <FormControlLabel
+            value="none"
+            control={<Radio size="small" />}
+            label="None"
+          />
+        </RadioGroup>
       </TableCell>
     </TableRow>
   );
@@ -180,7 +172,7 @@ export default function ProductTableRow({ row, selected, onViewRow, onSelectRow,
   );
 }
 
-ProductTableRow.propTypes = {
+CampaignTableRow.propTypes = {
   row: PropTypes.object,
   selected: PropTypes.bool,
   onViewRow: PropTypes.func,

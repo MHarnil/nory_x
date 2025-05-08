@@ -14,7 +14,7 @@ import CustomPopover, { usePopover } from 'src/components/custom-popover';
 
 // ----------------------------------------------------------------------
 
-export default function ProductTableToolbar({ filters, onFilters, dateError }) {
+export default function PotentialIssueTableToolbar({ filters, onFilters, dateError }) {
   const popover = usePopover();
 
   const handleFilterName = useCallback(
@@ -57,7 +57,7 @@ export default function ProductTableToolbar({ filters, onFilters, dateError }) {
             fullWidth
             value={filters.name}
             onChange={handleFilterName}
-            placeholder="Search Category..."
+            placeholder="Search Issues..."
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -106,7 +106,7 @@ export default function ProductTableToolbar({ filters, onFilters, dateError }) {
   );
 }
 
-ProductTableToolbar.propTypes = {
+PotentialIssueTableToolbar.propTypes = {
   dateError: PropTypes.bool,
   filters: PropTypes.object,
   onFilters: PropTypes.func,

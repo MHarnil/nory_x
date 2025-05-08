@@ -67,11 +67,6 @@ export function useNavData() {
             path: paths.dashboard.general.dstrategy,
             icon: ICONS.ecommerce,
           },
-          {
-            title: t('Orders '),
-            path: paths.dashboard.general.orders,
-            icon: ICONS.order,
-          },
         ],
       },
 
@@ -135,6 +130,11 @@ export function useNavData() {
             title: t('Inventory'),
             path: paths.dashboard.general.inventory,
             icon: ICONS.invoice,
+          },
+          {
+            title: t('Orders '),
+            path: paths.dashboard.general.orders,
+            icon: ICONS.order,
           },
         ],
       },

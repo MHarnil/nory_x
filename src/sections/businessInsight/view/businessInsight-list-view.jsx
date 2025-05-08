@@ -39,37 +39,100 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
-import ProductTableRow from '../product-table-row.jsx';
-import ProductTableToolbar from '../product-table-toolbar.jsx';
-import ProductTableFiltersResult from '../product-table-filters-result.jsx';
+import BusinessInsightTableRow from '../businessInsight-table-row.jsx';
+import BusinessInsightTableToolbar from '../businessInsight-table-toolbar.jsx';
+import BusinessInsightTableFiltersResult from '../businessInsight-table-filters-result.jsx';
 import { Grid } from '@mui/material';
 import AnalyticsWidgetSummary from '../../overview/analytics/analytics-widget-summary.jsx';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-const products = [
-  { id: 76, productName: "GREEN SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 75, productName: "RED SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 82, productName: "THE COLLECTION SNOWBOARD: HYDROGEN", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 77, productName: "THE COLLECTION SNOWBOARD: LIQUID", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 80, productName: "THE COLLECTION SNOWBOARD: OXYGEN", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 83, productName: "THE COMPARE AT PRICE SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 81, productName: "THE MULTI-LOCATION SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 78, productName: "THE MULTI-MANAGED SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 79, productName: "THE 3P FULFILLED SNOWBOARD", status: "ACTIVE", type: "NEW", category: "Snowboards", variants: 1 },
-  { id: 84, productName: "THE COMPLETE SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 5 },
-  { id: 85, productName: "BLACK SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 86, productName: "WHITE SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 2 },
-  { id: 87, productName: "SNOWBOARD PRO: ALPHA", status: "ACTIVE", type: "NEW", category: "Snowboards", variants: 3 },
-  { id: 88, productName: "SNOWBOARD PRO: BETA", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 89, productName: "SNOWBOARD PRO: GAMMA", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 90, productName: "SNOWBOARD PRO: DELTA", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 91, productName: "LIMITED EDITION SNOWBOARD", status: "ACTIVE", type: "NEW", category: "Snowboards", variants: 2 },
-  { id: 92, productName: "BASIC SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 93, productName: "URBAN SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 4 },
-  { id: 94, productName: "FREESTYLE SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 2 }
+const data = [
+  {
+    id: 1,
+    category: 'Revenue Maximization',
+    insight: 'Available data from week 18 of May 2025 shows a decline in accessory bundle sales.',
+    strategy: 'Implement a "Complete the Set" promotion: Bundle accessories with main products.'
+  },
+  {
+    id: 2,
+    category: 'Revenue Maximization',
+    insight: 'The product "THE 3P FULFILLED SNOWBOARD" is frequently out of stock.',
+    strategy: 'Immediately investigate and restock "THE 3P FULFILLED SNOWBOARD" to meet demand.'
+  },
+  {
+    id: 3,
+    category: 'Revenue Maximization',
+    insight: 'Many snowboards have high inventory levels. Targeted marketing is underutilized.',
+    strategy: 'Run targeted advertising campaigns focusing on products with high inventory.'
+  },
+  {
+    id: 4,
+    category: 'Cost Minimization',
+    insight: 'Several snowboards have high on-hand inventory, risking overstock costs.',
+    strategy: 'Implement a tiered discount strategy to reduce on-hand inventory gradually.'
+  },
+  {
+    id: 5,
+    category: 'Operational Efficiency',
+    insight: 'Warehouse pick time increased by 12% in the last quarter.',
+    strategy: 'Optimize warehouse layout and retrain staff for improved picking efficiency.'
+  },
+  {
+    id: 6,
+    category: 'Revenue Maximization',
+    insight: 'Customer reviews indicate a mismatch between product sizing and expectations.',
+    strategy: 'Update product sizing charts and include more visual size guides on product pages.'
+  },
+  {
+    id: 7,
+    category: 'Customer Satisfaction',
+    insight: 'Return rates for snow boots increased by 18% over the last two months.',
+    strategy: 'Analyze reasons for returns and improve product description accuracy.'
+  },
+  {
+    id: 8,
+    category: 'Cost Minimization',
+    insight: 'Shipping costs spiked due to inefficient carrier allocation.',
+    strategy: 'Negotiate better contracts with carriers and optimize regional distribution.'
+  },
+  {
+    id: 9,
+    category: 'Inventory Optimization',
+    insight: 'Multiple SKUs show zero sales in the last 6 months.',
+    strategy: 'Consider phasing out low-performing SKUs to free up inventory space.'
+  },
+  {
+    id: 10,
+    category: 'Revenue Maximization',
+    insight: 'Email campaigns have low open rates despite high subscriber counts.',
+    strategy: 'Revise subject lines and segment the audience for personalized content.'
+  },
+  {
+    id: 11,
+    category: 'Revenue Maximization',
+    insight: 'Upsell opportunities are not shown on product pages.',
+    strategy: 'Add a “Frequently Bought Together” section to increase average order value.'
+  },
+  {
+    id: 12,
+    category: 'Customer Satisfaction',
+    insight: 'Chat support response time exceeds industry average.',
+    strategy: 'Implement chatbot support during peak hours to reduce wait time.'
+  },
+  {
+    id: 13,
+    category: 'Inventory Optimization',
+    insight: 'Weekly stock audits reveal inconsistencies in reported vs. actual inventory.',
+    strategy: 'Upgrade inventory management software and increase audit frequency.'
+  },
+  {
+    id: 14,
+    category: 'Cost Minimization',
+    insight: 'Packaging waste contributes to rising disposal costs.',
+    strategy: 'Switch to recyclable materials and reduce unnecessary packaging layers.'
+  }
 ];
-
 
 
 // ----------------------------------------------------------------------
@@ -86,11 +149,9 @@ const STATUS_OPTIONS = [
 
 const TABLE_HEAD = [
   { id: 'orderNumber', label: 'ID' },
-  { id: 'name', label: 'ProductName' },
-  { id: 'status', label: 'Status' },
-  { id: 'type', label: 'Type' },
-  { id: 'category', label: 'Category' },
-  { id: 'variants', label: 'Variants' },
+  { id: 'name', label: 'Category' },
+  { id: 'createdAt', label: 'Insight' },
+  { id: 'totalQuantity', label: 'Strategy' },
 ];
 
 const defaultFilters = {
@@ -100,7 +161,7 @@ const defaultFilters = {
 
 // ----------------------------------------------------------------------
 
-export default function ProductListView() {
+export default function BusinessInsightListView() {
   const { enqueueSnackbar } = useSnackbar();
 
   const table = useTable({ defaultOrderBy: 'orderNumber' });
@@ -111,7 +172,7 @@ export default function ProductListView() {
 
   const confirm = useBoolean();
 
-  const [tableData, setTableData] = useState(products);
+  const [tableData, setTableData] = useState(data);
 
   const [filters, setFilters] = useState(defaultFilters);
 
@@ -194,27 +255,63 @@ export default function ProductListView() {
     <>
       <Container maxWidth={settings.themeStretch ? false : 'lg'}>
         <CustomBreadcrumbs
-          heading="Products"
+          heading="Business Insights"
           links={[
             { name: 'Dashboard', href: paths.dashboard.root },
             { name: 'User', href: paths.dashboard.user.root },
-            { name: 'Products' },
+            { name: 'Business Insights' },
           ]}
           sx={{ mb: { xs: 3, md: 5 } }}
         />
 
-        <Grid container spacing={3} sx={{display: 'flex', justifyContent: 'center'}}>
-          <Grid item xs={12} sm={6} md={6}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={6} md={3}>
             <AnalyticsWidgetSummary
-              title="18 products"
-              total={16} // active
+              title="Insights"
+              total={18}
               icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
+            />
+          </Grid>
+
+          <Grid item xs={12} sm={6} md={3}>
+            <AnalyticsWidgetSummary
+              title="Revenue Maximization"
+              total={6}
+              color="info"
+              icon={<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}
+            />
+          </Grid>
+
+          <Grid item xs={12} sm={6} md={3}>
+            <AnalyticsWidgetSummary
+              title="Cost Minimization"
+              total={6}
+              color="warning"
+              icon={<img alt="icon" src="/assets/icons/glass/ic_glass_buy.png" />}
+            />
+          </Grid>
+
+          <Grid item xs={12} sm={6} md={3}>
+            <AnalyticsWidgetSummary
+              title="Inventory Optimization"
+              total={6}
+              color="error"
+              icon={<img alt="icon" src="/assets/icons/glass/ic_glass_message.png" />}
             />
           </Grid>
         </Grid>
 
-        <Card sx={{ mt:4 }}>
-          <ProductTableToolbar
+        <Box sx={{ p: 2, mt:4 }}>
+          <Typography variant="h6" gutterBottom>
+            Insights & Strategy
+          </Typography>
+          <Typography variant="body2" color="text.secondary" gutterBottom>
+            Here are some ways to enhance your business operations!
+          </Typography>
+        </Box>
+
+        <Card>
+          <BusinessInsightTableToolbar
             filters={filters}
             onFilters={handleFilters}
             //
@@ -222,7 +319,7 @@ export default function ProductListView() {
           />
 
           {canReset && (
-            <ProductTableFiltersResult
+            <BusinessInsightTableFiltersResult
               filters={filters}
               onFilters={handleFilters}
               //
@@ -271,7 +368,7 @@ export default function ProductListView() {
                       table.page * table.rowsPerPage + table.rowsPerPage
                     )
                     .map((row) => (
-                      <ProductTableRow
+                      <BusinessInsightTableRow
                         key={row.id}
                         row={row}
                         selected={table.selected.includes(row.id)}
@@ -348,7 +445,7 @@ function applyFilter({ inputData, comparator, filters, dateError }) {
 
   if (name) {
     inputData = inputData.filter(
-      (item) => item.productName.toLowerCase().indexOf(name.toLowerCase()) !== -1
+      (item) => item.category.toLowerCase().indexOf(name.toLowerCase()) !== -1
     );
   }
 

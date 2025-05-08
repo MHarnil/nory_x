@@ -25,8 +25,8 @@ import CustomPopover, { usePopover } from 'src/components/custom-popover';
 
 // ----------------------------------------------------------------------
 
-export default function ProductTableRow({ row, selected, onViewRow, onSelectRow, onDeleteRow }) {
-  const { id, productName, status, type, category, variants } = row;
+export default function InventorysTableRow({ row, selected, onViewRow, onSelectRow, onDeleteRow }) {
+  const { id, product, date, available, incoming, committed,onHand,damaged,unit,sites } = row;
 
   const confirm = useBoolean();
 
@@ -61,7 +61,7 @@ export default function ProductTableRow({ row, selected, onViewRow, onSelectRow,
             maxHeight: '4.2em',
           }}
         >
-          {productName}
+          {product}
         </Box>
       </TableCell>
 
@@ -77,7 +77,7 @@ export default function ProductTableRow({ row, selected, onViewRow, onSelectRow,
           }}
         >
           {' '}
-          {status}{' '}
+          {date}{' '}
         </Box>
       </TableCell>
 
@@ -93,7 +93,7 @@ export default function ProductTableRow({ row, selected, onViewRow, onSelectRow,
           }}
         >
           {' '}
-          {type}{' '}
+          {available}{' '}
         </Box>
       </TableCell>
       <TableCell>
@@ -108,7 +108,67 @@ export default function ProductTableRow({ row, selected, onViewRow, onSelectRow,
           }}
         >
           {' '}
-          {category}{' '}
+          {incoming}{' '}
+        </Box>
+      </TableCell>
+      <TableCell>
+        <Box
+          sx={{
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            maxHeight: '4.2em',
+          }}
+        >
+          {' '}
+          {committed}{' '}
+        </Box>
+      </TableCell>
+      <TableCell>
+        <Box
+          sx={{
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            maxHeight: '4.2em',
+          }}
+        >
+          {' '}
+          {onHand}{' '}
+        </Box>
+      </TableCell>
+      <TableCell>
+        <Box
+          sx={{
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            maxHeight: '4.2em',
+          }}
+        >
+          {' '}
+          {damaged}{' '}
+        </Box>
+      </TableCell>
+      <TableCell>
+        <Box
+          sx={{
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            maxHeight: '4.2em',
+          }}
+        >
+          {' '}
+          {unit}{' '}
         </Box>
       </TableCell>
       <TableCell>
@@ -126,9 +186,8 @@ export default function ProductTableRow({ row, selected, onViewRow, onSelectRow,
             color: '#fff'
           }}
         >
-          {variants}
+          {sites}
         </Box>
-
       </TableCell>
     </TableRow>
   );
@@ -180,7 +239,7 @@ export default function ProductTableRow({ row, selected, onViewRow, onSelectRow,
   );
 }
 
-ProductTableRow.propTypes = {
+InventorysTableRow.propTypes = {
   row: PropTypes.object,
   selected: PropTypes.bool,
   onViewRow: PropTypes.func,
