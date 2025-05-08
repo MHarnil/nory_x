@@ -50,88 +50,85 @@ import Box from '@mui/material/Box';
 const variantsData = [
   {
     id: 123,
-    variantName: "THE COMPLETE SNOWBOARD - ICE",
-    forSale: "Yes",
-    cost: "0.00 currency code",
-    price: "699.95 CAD",
+    variantName: 'THE COMPLETE SNOWBOARD - ICE',
+    forSale: 'Yes',
+    cost: '0.00 currency code',
+    price: '699.95 CAD',
     inventory: 1901,
   },
   {
     id: 122,
-    variantName: "THE COMPARE AT PRICE SNOWBOARD",
-    forSale: "Yes",
-    cost: "0.00 currency code",
-    price: "785.95 CAD",
+    variantName: 'THE COMPARE AT PRICE SNOWBOARD',
+    forSale: 'Yes',
+    cost: '0.00 currency code',
+    price: '785.95 CAD',
     inventory: 1732,
   },
   {
     id: 119,
-    variantName: "THE COLLECTION SNOWBOARD: OXYGEN",
-    forSale: "Yes",
-    cost: "0.00 currency code",
-    price: "1025.00 CAD",
+    variantName: 'THE COLLECTION SNOWBOARD: OXYGEN',
+    forSale: 'Yes',
+    cost: '0.00 currency code',
+    price: '1025.00 CAD',
     inventory: 1715,
   },
   {
     id: 117,
-    variantName: "THE MULTI-MANAGED SNOWBOARD",
-    forSale: "Yes",
-    cost: "0.00 currency code",
-    price: "629.95 CAD",
+    variantName: 'THE MULTI-MANAGED SNOWBOARD',
+    forSale: 'Yes',
+    cost: '0.00 currency code',
+    price: '629.95 CAD',
     inventory: 1104,
   },
   {
     id: 116,
-    variantName: "THE COLLECTION SNOWBOARD: LIQUID",
-    forSale: "Yes",
-    cost: "0.00 currency code",
-    price: "749.95 CAD",
+    variantName: 'THE COLLECTION SNOWBOARD: LIQUID',
+    forSale: 'Yes',
+    cost: '0.00 currency code',
+    price: '749.95 CAD',
     inventory: 1010,
   },
   {
     id: 120,
-    variantName: "THE MULTI-LOCATION SNOWBOARD",
-    forSale: "Yes",
-    cost: "0.00 currency code",
-    price: "729.95 CAD",
+    variantName: 'THE MULTI-LOCATION SNOWBOARD',
+    forSale: 'Yes',
+    cost: '0.00 currency code',
+    price: '729.95 CAD',
     inventory: 936,
   },
   {
     id: 121,
-    variantName: "THE COLLECTION SNOWBOARD: HYDROGEN",
-    forSale: "Yes",
-    cost: "0.00 currency code",
-    price: "600.00 CAD",
+    variantName: 'THE COLLECTION SNOWBOARD: HYDROGEN',
+    forSale: 'Yes',
+    cost: '0.00 currency code',
+    price: '600.00 CAD',
     inventory: 726,
   },
   {
     id: 118,
-    variantName: "THE 3P FULFILLED SNOWBOARD",
-    forSale: "No",
-    cost: "0.00 currency code",
-    price: "2629.95 CAD",
+    variantName: 'THE 3P FULFILLED SNOWBOARD',
+    forSale: 'No',
+    cost: '0.00 currency code',
+    price: '2629.95 CAD',
     inventory: 0,
   },
   {
     id: 115,
-    variantName: "GREEN SNOWBOARD",
-    forSale: "Yes",
-    cost: "0.00 currency code",
-    price: "100.00 CAD",
+    variantName: 'GREEN SNOWBOARD',
+    forSale: 'Yes',
+    cost: '0.00 currency code',
+    price: '100.00 CAD',
     inventory: 0,
   },
   {
     id: 114,
-    variantName: "RED SNOWBOARD",
-    forSale: "Yes",
-    cost: "0.00 currency code",
-    price: "100.00 CAD",
+    variantName: 'RED SNOWBOARD',
+    forSale: 'Yes',
+    cost: '0.00 currency code',
+    price: '100.00 CAD',
     inventory: 0,
   },
 ];
-
-
-
 
 // ----------------------------------------------------------------------
 
@@ -253,118 +250,94 @@ export default function VariantListView() {
 
   return (
     <>
-      <Container maxWidth={settings.themeStretch ? false : 'lg'}>
-        <CustomBreadcrumbs
-          heading="Variants"
-          links={[
-            { name: 'Dashboard', href: paths.dashboard.root },
-            { name: 'User', href: paths.dashboard.user.root },
-            { name: 'Variants' },
-          ]}
-          sx={{ mb: { xs: 3, md: 5 } }}
+      <VariantTableToolbar
+        filters={filters}
+        onFilters={handleFilters}
+        //
+        dateError={dateError}
+      />
+
+      {canReset && (
+        <VariantTableFiltersResult
+          filters={filters}
+          onFilters={handleFilters}
+          //
+          onResetFilters={handleResetFilters}
+          //
+          results={dataFiltered.length}
+          sx={{ p: 2.5, pt: 0 }}
+        />
+      )}
+
+      <TableContainer sx={{ position: 'relative', overflow: 'unset' }}>
+        <TableSelectedAction
+          dense={table.dense}
+          numSelected={table.selected.length}
+          rowCount={dataFiltered.length}
+          onSelectAllRows={(checked) =>
+            table.onSelectAllRows(
+              checked,
+              dataFiltered.map((row) => row.id)
+            )
+          }
+          action={
+            <Tooltip title="Delete">
+              <IconButton color="primary" onClick={confirm.onTrue}>
+                <Iconify icon="solar:trash-bin-trash-bold" />
+              </IconButton>
+            </Tooltip>
+          }
         />
 
-        <Grid container spacing={3} sx={{display: 'flex', justifyContent: 'center'}}>
-          <Grid item xs={12} sm={6} md={6}>
-            <AnalyticsWidgetSummary
-              title="10 Variants"
-              total={9} // for sale
-              icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
-            />
-          </Grid>
-        </Grid>
-
-        <Card sx={{ mt:4 }}>
-          <VariantTableToolbar
-            filters={filters}
-            onFilters={handleFilters}
-            //
-            dateError={dateError}
-          />
-
-          {canReset && (
-            <VariantTableFiltersResult
-              filters={filters}
-              onFilters={handleFilters}
-              //
-              onResetFilters={handleResetFilters}
-              //
-              results={dataFiltered.length}
-              sx={{ p: 2.5, pt: 0 }}
-            />
-          )}
-
-          <TableContainer sx={{ position: 'relative', overflow: 'unset' }}>
-            <TableSelectedAction
-              dense={table.dense}
-              numSelected={table.selected.length}
+        <Scrollbar>
+          <Table size={table.dense ? 'small' : 'medium'} sx={{ minWidth: 960 }}>
+            <TableHeadCustom
+              order={table.order}
+              orderBy={table.orderBy}
+              headLabel={TABLE_HEAD}
               rowCount={dataFiltered.length}
-              onSelectAllRows={(checked) =>
-                table.onSelectAllRows(
-                  checked,
-                  dataFiltered.map((row) => row.id)
-                )
-              }
-              action={
-                <Tooltip title="Delete">
-                  <IconButton color="primary" onClick={confirm.onTrue}>
-                    <Iconify icon="solar:trash-bin-trash-bold" />
-                  </IconButton>
-                </Tooltip>
-              }
+              numSelected={table.selected.length}
+              onSort={table.onSort}
             />
 
-            <Scrollbar>
-              <Table size={table.dense ? 'small' : 'medium'} sx={{ minWidth: 960 }}>
-                <TableHeadCustom
-                  order={table.order}
-                  orderBy={table.orderBy}
-                  headLabel={TABLE_HEAD}
-                  rowCount={dataFiltered.length}
-                  numSelected={table.selected.length}
-                  onSort={table.onSort}
-                />
-
-                <TableBody>
-                  {dataFiltered
-                    .slice(
-                      table.page * table.rowsPerPage,
-                      table.page * table.rowsPerPage + table.rowsPerPage
-                    )
-                    .map((row) => (
-                      <VariantTableRow
-                        key={row.id}
-                        row={row}
-                        selected={table.selected.includes(row.id)}
-                        onSelectRow={() => table.onSelectRow(row.id)}
-                        onDeleteRow={() => handleDeleteRow(row.id)}
-                        onViewRow={() => handleViewRow(row.id)}
-                      />
-                    ))}
-
-                  <TableEmptyRows
-                    height={denseHeight}
-                    emptyRows={emptyRows(table.page, table.rowsPerPage, dataFiltered.length)}
+            <TableBody>
+              {dataFiltered
+                .slice(
+                  table.page * table.rowsPerPage,
+                  table.page * table.rowsPerPage + table.rowsPerPage
+                )
+                .map((row) => (
+                  <VariantTableRow
+                    key={row.id}
+                    row={row}
+                    selected={table.selected.includes(row.id)}
+                    onSelectRow={() => table.onSelectRow(row.id)}
+                    onDeleteRow={() => handleDeleteRow(row.id)}
+                    onViewRow={() => handleViewRow(row.id)}
                   />
+                ))}
 
-                  <TableNoData notFound={notFound} />
-                </TableBody>
-              </Table>
-            </Scrollbar>
-          </TableContainer>
+              <TableEmptyRows
+                height={denseHeight}
+                emptyRows={emptyRows(table.page, table.rowsPerPage, dataFiltered.length)}
+              />
 
-          <TablePaginationCustom
-            count={dataFiltered.length}
-            page={table.page}
-            rowsPerPage={table.rowsPerPage}
-            onPageChange={table.onChangePage}
-            onRowsPerPageChange={table.onChangeRowsPerPage}
-            //
-            dense={table.dense}
-            onChangeDense={table.onChangeDense}
-          />
-        </Card>
-      </Container>
+              <TableNoData notFound={notFound} />
+            </TableBody>
+          </Table>
+        </Scrollbar>
+      </TableContainer>
+
+      <TablePaginationCustom
+        count={dataFiltered.length}
+        page={table.page}
+        rowsPerPage={table.rowsPerPage}
+        onPageChange={table.onChangePage}
+        onRowsPerPageChange={table.onChangeRowsPerPage}
+        //
+        dense={table.dense}
+        onChangeDense={table.onChangeDense}
+      />
 
       <ConfirmDialog
         open={confirm.value}

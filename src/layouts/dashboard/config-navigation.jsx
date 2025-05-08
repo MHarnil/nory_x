@@ -122,16 +122,6 @@ export function useNavData() {
             icon: ICONS.product,
           },
           {
-            title: t('Variants'),
-            path: paths.dashboard.general.variants,
-            icon: ICONS.job,
-          },
-          {
-            title: t('Inventory'),
-            path: paths.dashboard.general.inventory,
-            icon: ICONS.invoice,
-          },
-          {
             title: t('Orders '),
             path: paths.dashboard.general.orders,
             icon: ICONS.order,

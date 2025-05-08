@@ -33,12 +33,12 @@ const ProductSeoPage = lazy(() => import('src/pages/dashboard/productSeo'));
 const MediaSeoPage = lazy(() => import('src/pages/dashboard/mediaSeo'));
 // ShopSeoPage
 const ShopSeoPage = lazy(() => import('src/pages/dashboard/shopSeo'));
-// ProductPage
-const ProductPage = lazy(() => import('src/pages/dashboard/product'));
+// ProductsPage
+const ProductsPage = lazy(() => import('src/pages/dashboard/products'));
 // VariantPage
-const VariantPage = lazy(() => import('src/pages/dashboard/variant.jsx'));
+const VariantPage = lazy(() => import('src/pages/dashboard/variant'));
 // InventorysPage
-const InventorysPage = lazy(() => import('src/pages/dashboard/inventorys.jsx'));
+const InventorysPage = lazy(() => import('src/pages/dashboard/inventorys'));
 // DstrategyPage
 const DstrategyPage = lazy(() => import('src/pages/dashboard/dstrategy'));
 // OrdersPage
@@ -69,7 +69,7 @@ export const dashboardRoutes = [
       { path: 'product-seo', element: <ProductSeoPage /> },
       { path: 'media-seo', element: <MediaSeoPage /> },
       { path: 'shop-seo', element: <ShopSeoPage /> },
-      { path: 'products', element: <ProductPage /> },
+      { path: 'products', element: <ProductsPage /> },
       { path: 'variants', element: <VariantPage /> },
       { path: 'inventory', element: <InventorysPage /> },
       { path: 'dstrategy', element: <DstrategyPage /> },

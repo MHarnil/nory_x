@@ -296,221 +296,94 @@ export default function InventorysListView() {
 
   return (
     <>
-      <Container maxWidth={settings.themeStretch ? false : 'lg'}>
-        <CustomBreadcrumbs
-          heading="Inventory"
-          links={[
-            { name: 'Dashboard', href: paths.dashboard.root },
-            { name: 'User', href: paths.dashboard.user.root },
-            { name: 'Inventory' },
-          ]}
-          sx={{ mb: { xs: 3, md: 5 } }}
+      <InventorysTableToolbar
+        filters={filters}
+        onFilters={handleFilters}
+        //
+        dateError={dateError}
+      />
+
+      {canReset && (
+        <InventorysTableFiltersResult
+          filters={filters}
+          onFilters={handleFilters}
+          //
+          onResetFilters={handleResetFilters}
+          //
+          results={dataFiltered.length}
+          sx={{ p: 2.5, pt: 0 }}
+        />
+      )}
+
+      <TableContainer sx={{ position: 'relative', overflow: 'unset' }}>
+        <TableSelectedAction
+          dense={table.dense}
+          numSelected={table.selected.length}
+          rowCount={dataFiltered.length}
+          onSelectAllRows={(checked) =>
+            table.onSelectAllRows(
+              checked,
+              dataFiltered.map((row) => row.id)
+            )
+          }
+          action={
+            <Tooltip title="Delete">
+              <IconButton color="primary" onClick={confirm.onTrue}>
+                <Iconify icon="solar:trash-bin-trash-bold" />
+              </IconButton>
+            </Tooltip>
+          }
         />
 
-        <Grid container spacing={3} sx={{ display: 'flex', justifyContent: 'center' }}>
-          <Grid item xs={12} sm={6} md={6}>
-            <AnalyticsWidgetSummary
-              title="10 items"
-              total={3} // out of stoke
-              color="warning"
-              icon={<img alt="icon" src="/assets/icons/glass/ic_glass_buy.png" />}
+        <Scrollbar>
+          <Table size={table.dense ? 'small' : 'medium'} sx={{ minWidth: 960 }}>
+            <TableHeadCustom
+              order={table.order}
+              orderBy={table.orderBy}
+              headLabel={TABLE_HEAD}
+              rowCount={dataFiltered.length}
+              numSelected={table.selected.length}
+              onSort={table.onSort}
             />
-          </Grid>
-        </Grid>
 
-        <Card sx={{ mt: 4 }}>
-          <Tabs value={tab} onChange={(e, newVal) => setTab(newVal)} sx={{ mb: 2,pl:3, pt:1 }}>
-            <Tab label="Inventory" />
-            <Tab label="Inventory Forecast" />
-          </Tabs>
+            <TableBody>
+              {dataFiltered
+                .slice(
+                  table.page * table.rowsPerPage,
+                  table.page * table.rowsPerPage + table.rowsPerPage
+                )
+                .map((row) => (
+                  <InventorysTableRow
+                    key={row.id}
+                    row={row}
+                    selected={table.selected.includes(row.id)}
+                    onSelectRow={() => table.onSelectRow(row.id)}
+                    onDeleteRow={() => handleDeleteRow(row.id)}
+                    onViewRow={() => handleViewRow(row.id)}
+                  />
+                ))}
 
-          {tab === 0 && (
-            <>
-              <InventorysTableToolbar
-                filters={filters}
-                onFilters={handleFilters}
-                //
-                dateError={dateError}
+              <TableEmptyRows
+                height={denseHeight}
+                emptyRows={emptyRows(table.page, table.rowsPerPage, dataFiltered.length)}
               />
 
-              {canReset && (
-                <InventorysTableFiltersResult
-                  filters={filters}
-                  onFilters={handleFilters}
-                  //
-                  onResetFilters={handleResetFilters}
-                  //
-                  results={dataFiltered.length}
-                  sx={{ p: 2.5, pt: 0 }}
-                />
-              )}
+              <TableNoData notFound={notFound} />
+            </TableBody>
+          </Table>
+        </Scrollbar>
+      </TableContainer>
 
-              <TableContainer sx={{ position: 'relative', overflow: 'unset' }}>
-                <TableSelectedAction
-                  dense={table.dense}
-                  numSelected={table.selected.length}
-                  rowCount={dataFiltered.length}
-                  onSelectAllRows={(checked) =>
-                    table.onSelectAllRows(
-                      checked,
-                      dataFiltered.map((row) => row.id)
-                    )
-                  }
-                  action={
-                    <Tooltip title="Delete">
-                      <IconButton color="primary" onClick={confirm.onTrue}>
-                        <Iconify icon="solar:trash-bin-trash-bold" />
-                      </IconButton>
-                    </Tooltip>
-                  }
-                />
-
-                <Scrollbar>
-                  <Table size={table.dense ? 'small' : 'medium'} sx={{ minWidth: 960 }}>
-                    <TableHeadCustom
-                      order={table.order}
-                      orderBy={table.orderBy}
-                      headLabel={TABLE_HEAD}
-                      rowCount={dataFiltered.length}
-                      numSelected={table.selected.length}
-                      onSort={table.onSort}
-                    />
-
-                    <TableBody>
-                      {dataFiltered
-                        .slice(
-                          table.page * table.rowsPerPage,
-                          table.page * table.rowsPerPage + table.rowsPerPage
-                        )
-                        .map((row) => (
-                          <InventorysTableRow
-                            key={row.id}
-                            row={row}
-                            selected={table.selected.includes(row.id)}
-                            onSelectRow={() => table.onSelectRow(row.id)}
-                            onDeleteRow={() => handleDeleteRow(row.id)}
-                            onViewRow={() => handleViewRow(row.id)}
-                          />
-                        ))}
-
-                      <TableEmptyRows
-                        height={denseHeight}
-                        emptyRows={emptyRows(table.page, table.rowsPerPage, dataFiltered.length)}
-                      />
-
-                      <TableNoData notFound={notFound} />
-                    </TableBody>
-                  </Table>
-                </Scrollbar>
-              </TableContainer>
-
-              <TablePaginationCustom
-                count={dataFiltered.length}
-                page={table.page}
-                rowsPerPage={table.rowsPerPage}
-                onPageChange={table.onChangePage}
-                onRowsPerPageChange={table.onChangeRowsPerPage}
-                //
-                dense={table.dense}
-                onChangeDense={table.onChangeDense}
-              />
-            </>
-          )}
-
-          {tab === 1 && (
-            <>
-              <InventorysTableToolbar
-                filters={filters}
-                onFilters={handleFilters}
-                //
-                dateError={dateError}
-              />
-
-              {canReset && (
-                <InventorysTableFiltersResult
-                  filters={filters}
-                  onFilters={handleFilters}
-                  //
-                  onResetFilters={handleResetFilters}
-                  //
-                  results={dataFiltered.length}
-                  sx={{ p: 2.5, pt: 0 }}
-                />
-              )}
-
-              <TableContainer sx={{ position: 'relative', overflow: 'unset' }}>
-                <TableSelectedAction
-                  dense={table.dense}
-                  numSelected={table.selected.length}
-                  rowCount={dataFiltered.length}
-                  onSelectAllRows={(checked) =>
-                    table.onSelectAllRows(
-                      checked,
-                      dataFiltered.map((row) => row.id)
-                    )
-                  }
-                  action={
-                    <Tooltip title="Delete">
-                      <IconButton color="primary" onClick={confirm.onTrue}>
-                        <Iconify icon="solar:trash-bin-trash-bold" />
-                      </IconButton>
-                    </Tooltip>
-                  }
-                />
-
-                <Scrollbar>
-                  <Table size={table.dense ? 'small' : 'medium'} sx={{ minWidth: 960 }}>
-                    <TableHeadCustom
-                      order={table.order}
-                      orderBy={table.orderBy}
-                      headLabel={TABLE_HEAD}
-                      rowCount={dataFiltered.length}
-                      numSelected={table.selected.length}
-                      onSort={table.onSort}
-                    />
-
-                    <TableBody>
-                      {dataFiltered
-                        .slice(
-                          table.page * table.rowsPerPage,
-                          table.page * table.rowsPerPage + table.rowsPerPage
-                        )
-                        .map((row) => (
-                          <InventorysTableRow
-                            key={row.id}
-                            row={row}
-                            selected={table.selected.includes(row.id)}
-                            onSelectRow={() => table.onSelectRow(row.id)}
-                            onDeleteRow={() => handleDeleteRow(row.id)}
-                            onViewRow={() => handleViewRow(row.id)}
-                          />
-                        ))}
-
-                      <TableEmptyRows
-                        height={denseHeight}
-                        emptyRows={emptyRows(table.page, table.rowsPerPage, dataFiltered.length)}
-                      />
-
-                      <TableNoData notFound={notFound} />
-                    </TableBody>
-                  </Table>
-                </Scrollbar>
-              </TableContainer>
-
-              <TablePaginationCustom
-                count={dataFiltered.length}
-                page={table.page}
-                rowsPerPage={table.rowsPerPage}
-                onPageChange={table.onChangePage}
-                onRowsPerPageChange={table.onChangeRowsPerPage}
-                //
-                dense={table.dense}
-                onChangeDense={table.onChangeDense}
-              />
-            </>
-          )}
-        </Card>
-      </Container>
+      <TablePaginationCustom
+        count={dataFiltered.length}
+        page={table.page}
+        rowsPerPage={table.rowsPerPage}
+        onPageChange={table.onChangePage}
+        onRowsPerPageChange={table.onChangeRowsPerPage}
+        //
+        dense={table.dense}
+        onChangeDense={table.onChangeDense}
+      />
 
       <ConfirmDialog
         open={confirm.value}
