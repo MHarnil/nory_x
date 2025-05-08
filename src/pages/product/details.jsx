@@ -1,8 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 
 import { useParams } from 'src/routes/hooks';
-import { ProductsListView } from '../../sections/products/view/index.js';
-
+// import { ProductSeoListView } from '../../sections/productsSEO/view/index.js';
 
 // ----------------------------------------------------------------------
 
@@ -17,7 +16,7 @@ export default function ProductShopDetailsPage() {
         <title> Product: Details</title>
       </Helmet>
 
-      <ProductsListView id={`${id}`} />
+      {/*<ProductSeoListView id={`${id}`} />*/}
     </>
   );
 }
