@@ -1,17 +1,17 @@
 import { Helmet } from 'react-helmet-async';
 
-import MediaSeoCardsView from '../../sections/mediaSEO/view/mediaSeo-cards-view.jsx';
+import MediasSeoListView from '../../sections/mediasSEO/view/mediasSeo-list-view.jsx';
 
 // ----------------------------------------------------------------------
 
-export default function UserProfilePage() {
+export default function MediasSeoPage() {
   return (
     <>
       <Helmet>
         <title> Dashboard: Media SEO</title>
       </Helmet>
 
-      <MediaSeoCardsView />
+      <MediasSeoListView />
     </>
   );
 }

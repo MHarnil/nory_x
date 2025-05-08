@@ -1,17 +1,17 @@
 import { Helmet } from 'react-helmet-async';
 
-import ProductSeoCardsView from '../../sections/productSEO/view/productSeo-cards-view.jsx';
+import ProductSeoListView from '../../sections/productsSEO/view/productSeo-list-view.jsx';
 
 // ----------------------------------------------------------------------
 
-export default function UserProfilePage() {
+export default function ProductSeoPage() {
   return (
     <>
       <Helmet>
         <title> Dashboard: Product SEO</title>
       </Helmet>
 
-      <ProductSeoCardsView />
+      <ProductSeoListView />
     </>
   );
 }

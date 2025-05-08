@@ -1,37 +1,51 @@
 import PropTypes from 'prop-types';
+
 import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import Avatar from '@mui/material/Avatar';
+import Collapse from '@mui/material/Collapse';
 import MenuItem from '@mui/material/MenuItem';
 import TableRow from '@mui/material/TableRow';
+import Checkbox from '@mui/material/Checkbox';
 import TableCell from '@mui/material/TableCell';
+import IconButton from '@mui/material/IconButton';
+import ListItemText from '@mui/material/ListItemText';
+
 import { useBoolean } from 'src/hooks/use-boolean';
+
+import { fCurrency } from 'src/utils/format-number';
+import { fDate, fTime } from 'src/utils/format-time';
+
+import Label from 'src/components/label';
 import Iconify from 'src/components/iconify';
 import { ConfirmDialog } from 'src/components/custom-dialog';
 import CustomPopover, { usePopover } from 'src/components/custom-popover';
-import Radio from '@mui/material/Radio';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import Radio from '@mui/material/Radio';
 import { useState } from 'react';
 
 // ----------------------------------------------------------------------
 
-export default function BlogContentTableRow({
-  row,
-  selected,
-  onViewRow,
-  onSelectRow,
-  onDeleteRow,
-}) {
-  const { id, title, category, contentDate, action } = row;
+export default function MediasSeoTableRow({ row, selected, onViewRow, onSelectRow, onDeleteRow }) {
+  const {
+    id,
+    productName,
+    image,
+    currentAltText,
+    suggestedAltText,
+    suggestedDescription,
+    action,
+  } = row;
 
   const confirm = useBoolean();
 
   const collapse = useBoolean();
+
   const [uploadStatus, setUploadStatus] = useState({});
-  const handleUploadChange = (id, value) => {
-    setUploadStatus((prev) => ({ ...prev, [id]: value }));
-  };
 
   const popover = usePopover();
 
@@ -62,25 +76,13 @@ export default function BlogContentTableRow({
             maxHeight: '4.2em',
           }}
         >
-          {title}
+          {productName}
         </Box>
       </TableCell>
 
-      <TableCell>
-        <Box
-          sx={{
-            display: '-webkit-box',
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            maxHeight: '4.2em',
-          }}
-        >
-          {category}
-        </Box>
+      <TableCell align="center">
+        <img src={image} alt="Product" height="60" />
       </TableCell>
-
       <TableCell>
         <Box
           sx={{
@@ -93,10 +95,37 @@ export default function BlogContentTableRow({
           }}
         >
           {' '}
-          {contentDate}{' '}
+          {currentAltText}{' '}
         </Box>
       </TableCell>
-
+      <TableCell>
+        <Box
+          sx={{
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            maxHeight: '4.2em',
+          }}
+        >
+          {suggestedDescription}
+        </Box>
+      </TableCell>
+      <TableCell>
+        <Box
+          sx={{
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            maxHeight: '4.2em',
+          }}
+        >
+          {suggestedAltText}
+        </Box>
+      </TableCell>
       <TableCell>
         <Box
           sx={{
@@ -170,7 +199,7 @@ export default function BlogContentTableRow({
   );
 }
 
-BlogContentTableRow.propTypes = {
+MediasSeoTableRow.propTypes = {
   row: PropTypes.object,
   selected: PropTypes.bool,
   onViewRow: PropTypes.func,

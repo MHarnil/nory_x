@@ -1,37 +1,51 @@
 import PropTypes from 'prop-types';
+
 import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import Avatar from '@mui/material/Avatar';
+import Collapse from '@mui/material/Collapse';
 import MenuItem from '@mui/material/MenuItem';
 import TableRow from '@mui/material/TableRow';
+import Checkbox from '@mui/material/Checkbox';
 import TableCell from '@mui/material/TableCell';
+import IconButton from '@mui/material/IconButton';
+import ListItemText from '@mui/material/ListItemText';
+
 import { useBoolean } from 'src/hooks/use-boolean';
+
+import { fCurrency } from 'src/utils/format-number';
+import { fDate, fTime } from 'src/utils/format-time';
+
+import Label from 'src/components/label';
 import Iconify from 'src/components/iconify';
 import { ConfirmDialog } from 'src/components/custom-dialog';
 import CustomPopover, { usePopover } from 'src/components/custom-popover';
-import Radio from '@mui/material/Radio';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import Radio from '@mui/material/Radio';
 import { useState } from 'react';
 
 // ----------------------------------------------------------------------
 
-export default function BlogContentTableRow({
-  row,
-  selected,
-  onViewRow,
-  onSelectRow,
-  onDeleteRow,
-}) {
-  const { id, title, category, contentDate, action } = row;
+export default function ShopsSeoTableRow({ row, selected, onViewRow, onSelectRow, onDeleteRow }) {
+  const {
+    id,
+    currentTitle,
+    currentDescription,
+    suggestedFocus,
+    suggestedTitle,
+    suggestedDescription,
+    suggestedTags,
+  } = row;
 
   const confirm = useBoolean();
 
   const collapse = useBoolean();
+
   const [uploadStatus, setUploadStatus] = useState({});
-  const handleUploadChange = (id, value) => {
-    setUploadStatus((prev) => ({ ...prev, [id]: value }));
-  };
 
   const popover = usePopover();
 
@@ -62,22 +76,8 @@ export default function BlogContentTableRow({
             maxHeight: '4.2em',
           }}
         >
-          {title}
-        </Box>
-      </TableCell>
-
-      <TableCell>
-        <Box
-          sx={{
-            display: '-webkit-box',
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            maxHeight: '4.2em',
-          }}
-        >
-          {category}
+          {' '}
+          {currentTitle}{' '}
         </Box>
       </TableCell>
 
@@ -93,10 +93,67 @@ export default function BlogContentTableRow({
           }}
         >
           {' '}
-          {contentDate}{' '}
+          {currentDescription}{' '}
         </Box>
       </TableCell>
-
+      <TableCell>
+        <Box
+          sx={{
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            maxHeight: '4.2em',
+          }}
+        >
+          {' '}
+          {suggestedFocus}{' '}
+        </Box>
+      </TableCell>
+      <TableCell>
+        <Box
+          sx={{
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            maxHeight: '4.2em',
+          }}
+        >
+          {' '}
+          {suggestedTitle}{' '}
+        </Box>
+      </TableCell>
+      <TableCell>
+        <Box
+          sx={{
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            maxHeight: '4.2em',
+          }}
+        >
+          {suggestedDescription}
+        </Box>
+      </TableCell>
+      <TableCell>
+        <Box
+          sx={{
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            maxHeight: '4.2em',
+          }}
+        >
+          {suggestedTags}
+        </Box>
+      </TableCell>
       <TableCell>
         <Box
           sx={{
@@ -108,17 +165,6 @@ export default function BlogContentTableRow({
         >
           <VisibilityIcon />
         </Box>
-      </TableCell>
-
-      <TableCell>
-        <RadioGroup
-          row
-          value={uploadStatus[action] || 'none'}
-          onChange={(e) => handleUploadChange(action, e.target.value)}
-        >
-          <FormControlLabel value="upload" control={<Radio size="small" />} label="Upload" />
-          <FormControlLabel value="none" control={<Radio size="small" />} label="None" />
-        </RadioGroup>
       </TableCell>
     </TableRow>
   );
@@ -170,7 +216,7 @@ export default function BlogContentTableRow({
   );
 }
 
-BlogContentTableRow.propTypes = {
+ShopsSeoTableRow.propTypes = {
   row: PropTypes.object,
   selected: PropTypes.bool,
   onViewRow: PropTypes.func,

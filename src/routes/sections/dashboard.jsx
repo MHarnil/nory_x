@@ -27,12 +27,12 @@ const PotentialIssuePage = lazy(() => import('src/pages/dashboard/potentialIssue
 const BlogContentPage = lazy(() => import('src/pages/dashboard/blogContent'));
 // CampaignPage
 const CampaignPage = lazy(() => import('src/pages/dashboard/campaign.jsx'));
-// ProductSeoPage
-const ProductSeoPage = lazy(() => import('src/pages/dashboard/productSeo'));
-// MediaSeoPage
-const MediaSeoPage = lazy(() => import('src/pages/dashboard/mediaSeo'));
-// ShopSeoPage
-const ShopSeoPage = lazy(() => import('src/pages/dashboard/shopSeo'));
+// ProductsSeoPage
+const ProductsSeoPage = lazy(() => import('src/pages/dashboard/productsSeo'));
+// MediasSeoPage
+const MediasSeoPage = lazy(() => import('src/pages/dashboard/mediasSeo'));
+// ShopsSeoPage
+const ShopsSeoPage = lazy(() => import('src/pages/dashboard/shopsSeo'));
 // ProductsPage
 const ProductsPage = lazy(() => import('src/pages/dashboard/products'));
 // VariantPage
@@ -66,9 +66,9 @@ export const dashboardRoutes = [
       { path: 'potential-issues', element: <PotentialIssuePage /> },
       { path: 'blog-content', element: <BlogContentPage /> },
       { path: 'campaigns', element: <CampaignPage /> },
-      { path: 'product-seo', element: <ProductSeoPage /> },
-      { path: 'media-seo', element: <MediaSeoPage /> },
-      { path: 'shop-seo', element: <ShopSeoPage /> },
+      { path: 'product-seo', element: <ProductsSeoPage /> },
+      { path: 'media-seo', element: <MediasSeoPage /> },
+      { path: 'shop-seo', element: <ShopsSeoPage /> },
       { path: 'products', element: <ProductsPage /> },
       { path: 'variants', element: <VariantPage /> },
       { path: 'inventory', element: <InventorysPage /> },

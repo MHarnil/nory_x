@@ -39,37 +39,153 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
-import ProductTableRow from '../product-table-row.jsx';
-import ProductTableToolbar from '../product-table-toolbar.jsx';
-import ProductTableFiltersResult from '../product-table-filters-result.jsx';
+import ShopsSeoTableRow from '../shopsSeo-table-row.jsx';
+import ShopsSeoTableToolbar from '../shopsSeo-table-toolbar.jsx';
+import ShopsSeoTableFiltersResult from '../shopsSeo-table-filters-result.jsx';
 import { Grid } from '@mui/material';
 import AnalyticsWidgetSummary from '../../overview/analytics/analytics-widget-summary.jsx';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import VariantListView from '../../variant/view/variant-list-view.jsx';
+import InventorysListView from '../../inventorys/view/inventorys-list-view.jsx';
 
-const products = [
-  { id: 76, productName: "GREEN SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 75, productName: "RED SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 82, productName: "THE COLLECTION SNOWBOARD: HYDROGEN", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 77, productName: "THE COLLECTION SNOWBOARD: LIQUID", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 80, productName: "THE COLLECTION SNOWBOARD: OXYGEN", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 83, productName: "THE COMPARE AT PRICE SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 81, productName: "THE MULTI-LOCATION SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 78, productName: "THE MULTI-MANAGED SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 79, productName: "THE 3P FULFILLED SNOWBOARD", status: "ACTIVE", type: "NEW", category: "Snowboards", variants: 1 },
-  { id: 84, productName: "THE COMPLETE SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 5 },
-  { id: 85, productName: "BLACK SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 86, productName: "WHITE SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 2 },
-  { id: 87, productName: "SNOWBOARD PRO: ALPHA", status: "ACTIVE", type: "NEW", category: "Snowboards", variants: 3 },
-  { id: 88, productName: "SNOWBOARD PRO: BETA", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 89, productName: "SNOWBOARD PRO: GAMMA", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 90, productName: "SNOWBOARD PRO: DELTA", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 91, productName: "LIMITED EDITION SNOWBOARD", status: "ACTIVE", type: "NEW", category: "Snowboards", variants: 2 },
-  { id: 92, productName: "BASIC SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 1 },
-  { id: 93, productName: "URBAN SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 4 },
-  { id: 94, productName: "FREESTYLE SNOWBOARD", status: "ACTIVE", type: "NEW", category: "-", variants: 2 }
+const seoRows = [
+  {
+    id: 61,
+    currentTitle: '-',
+    currentDescription: '-',
+    suggestedFocus: 'RED SNOWBOARD Canada',
+    suggestedTitle: 'RED SNOWBOARD -Canada',
+    suggestedDescription: 'Get your RED SNOWBOARD today...',
+    suggestedTags: '"RED SNOWBOARD", "snowboard"',
+  },
+  {
+    id: 62,
+    currentTitle: '-',
+    currentDescription: '-',
+    suggestedFocus: 'None',
+    suggestedTitle: 'GREEN SNOWBOARD -Canada',
+    suggestedDescription: 'Get your GREEN SNOWBOARD today...',
+    suggestedTags: '"GREEN SNOWBOARD", "snowboard"',
+  },
+  {
+    id: 63,
+    currentTitle: 'THE COLLECTION SNOWBOARD...',
+    currentDescription: 'Shop THE COLLECTION SNOWBOARD...',
+    suggestedFocus: 'THE COLLECTION SNOWBOARD...',
+    suggestedTitle: 'Liquid Snowboard - The Collection',
+    suggestedDescription: 'Shop The Collection...',
+    suggestedTags: '"Liquid Snowboard", "The..."',
+  },
+  {
+    id: 64,
+    currentTitle: '-',
+    currentDescription: '-',
+    suggestedFocus: 'BLUE SNOWBOARD Canada',
+    suggestedTitle: 'BLUE SNOWBOARD -Canada',
+    suggestedDescription: 'Find your perfect BLUE SNOWBOARD today...',
+    suggestedTags: '"BLUE SNOWBOARD", "snowboard"',
+  },
+  {
+    id: 65,
+    currentTitle: '-',
+    currentDescription: '-',
+    suggestedFocus: 'None',
+    suggestedTitle: 'YELLOW SNOWBOARD -Canada',
+    suggestedDescription: 'Get your YELLOW SNOWBOARD today...',
+    suggestedTags: '"YELLOW SNOWBOARD", "snowboard"',
+  },
+  {
+    id: 66,
+    currentTitle: '-',
+    currentDescription: '-',
+    suggestedFocus: 'BLACK SNOWBOARD Gear',
+    suggestedTitle: 'BLACK SNOWBOARD - Canada',
+    suggestedDescription: 'Black snowboards for performance...',
+    suggestedTags: '"BLACK SNOWBOARD", "gear"',
+  },
+  {
+    id: 67,
+    currentTitle: '-',
+    currentDescription: '-',
+    suggestedFocus: 'WHITE SNOWBOARD Deals',
+    suggestedTitle: 'WHITE SNOWBOARD - Best Offers',
+    suggestedDescription: 'Buy WHITE SNOWBOARD with great deals...',
+    suggestedTags: '"WHITE SNOWBOARD", "offers"',
+  },
+  {
+    id: 68,
+    currentTitle: '-',
+    currentDescription: '-',
+    suggestedFocus: 'SNOWBOARD PRO Canada',
+    suggestedTitle: 'SNOWBOARD PRO - Canada Edition',
+    suggestedDescription: 'Pro level snowboards in Canada...',
+    suggestedTags: '"SNOWBOARD PRO", "pro gear"',
+  },
+  {
+    id: 69,
+    currentTitle: '-',
+    currentDescription: '-',
+    suggestedFocus: 'Beginner Snowboards',
+    suggestedTitle: 'SNOWBOARD for Beginners - Start Here',
+    suggestedDescription: 'Perfect beginner boards...',
+    suggestedTags: '"beginner snowboard", "snowboard"',
+  },
+  {
+    id: 70,
+    currentTitle: '-',
+    currentDescription: '-',
+    suggestedFocus: 'SNOWBOARD BUNDLE Sale',
+    suggestedTitle: 'SNOWBOARD BUNDLE - Save More',
+    suggestedDescription: 'Bundles of gear at a discount...',
+    suggestedTags: '"snowboard bundle", "gear"',
+  },
+  {
+    id: 71,
+    currentTitle: '-',
+    currentDescription: '-',
+    suggestedFocus: 'Urban SNOWBOARD Style',
+    suggestedTitle: 'Urban SNOWBOARD - Street Ready',
+    suggestedDescription: 'Ride urban slopes in style...',
+    suggestedTags: '"urban snowboard", "style"',
+  },
+  {
+    id: 72,
+    currentTitle: '-',
+    currentDescription: '-',
+    suggestedFocus: 'Mountain Gear',
+    suggestedTitle: 'MOUNTAIN SNOWBOARD - Rugged Gear',
+    suggestedDescription: 'Tough boards for mountain slopes...',
+    suggestedTags: '"mountain snowboard", "gear"',
+  },
+  {
+    id: 73,
+    currentTitle: '-',
+    currentDescription: '-',
+    suggestedFocus: 'Custom Made Snowboards',
+    suggestedTitle: 'Custom SNOWBOARD - Your Style',
+    suggestedDescription: 'Design your own snowboard...',
+    suggestedTags: '"custom snowboard", "design"',
+  },
+  {
+    id: 74,
+    currentTitle: '-',
+    currentDescription: '-',
+    suggestedFocus: 'WOMEN SNOWBOARD Gear',
+    suggestedTitle: 'Women’s SNOWBOARD - Fit & Flex',
+    suggestedDescription: 'Boards for female riders...',
+    suggestedTags: '"women snowboard", "gear"',
+  },
+  {
+    id: 75,
+    currentTitle: '-',
+    currentDescription: '-',
+    suggestedFocus: 'Kids Snowboards',
+    suggestedTitle: 'KIDS SNOWBOARD - Safe & Fun',
+    suggestedDescription: 'Snowboards designed for kids...',
+    suggestedTags: '"kids snowboard", "safety"',
+  },
 ];
-
 
 
 // ----------------------------------------------------------------------
@@ -86,11 +202,13 @@ const STATUS_OPTIONS = [
 
 const TABLE_HEAD = [
   { id: 'orderNumber', label: 'ID' },
-  { id: 'name', label: 'ProductName' },
-  { id: 'status', label: 'Status' },
-  { id: 'type', label: 'Type' },
-  { id: 'category', label: 'Category' },
-  { id: 'variants', label: 'Variants' },
+  { id: 'status', label: 'CurrentTitle' },
+  { id: 'type', label: 'CurrentDescription' },
+  { id: 'category', label: 'SuggestedFocus' },
+  { id: 'category', label: 'SuggestedTitle' },
+  { id: 'category', label: 'SuggestedDescription' },
+  { id: 'category', label: 'SuggestedTags' },
+  { id: 'variants', label: 'ChangeRationale' },
 ];
 
 const defaultFilters = {
@@ -100,7 +218,7 @@ const defaultFilters = {
 
 // ----------------------------------------------------------------------
 
-export default function ProductListView() {
+export default function ShopsSeoListView() {
   const { enqueueSnackbar } = useSnackbar();
 
   const table = useTable({ defaultOrderBy: 'orderNumber' });
@@ -111,7 +229,7 @@ export default function ProductListView() {
 
   const confirm = useBoolean();
 
-  const [tableData, setTableData] = useState(products);
+  const [tableData, setTableData] = useState(seoRows);
 
   const [filters, setFilters] = useState(defaultFilters);
 
@@ -194,27 +312,45 @@ export default function ProductListView() {
     <>
       <Container maxWidth={settings.themeStretch ? false : 'lg'}>
         <CustomBreadcrumbs
-          heading="Products"
+          heading="Shop SEO"
           links={[
             { name: 'Dashboard', href: paths.dashboard.root },
             { name: 'User', href: paths.dashboard.user.root },
-            { name: 'Products' },
+            { name: 'Shop SEO' },
           ]}
           sx={{ mb: { xs: 3, md: 5 } }}
         />
 
-        <Grid container spacing={3} sx={{display: 'flex', justifyContent: 'center'}}>
-          <Grid item xs={12} sm={6} md={6}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={6} md={4}>
             <AnalyticsWidgetSummary
-              title="18 products"
-              total={16} // active
+              title="SEO applied to Shop"
+              total={1}
               icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
+            />
+          </Grid>
+
+          <Grid item xs={12} sm={6} md={4}>
+            <AnalyticsWidgetSummary
+              title="SEO suggestions for Shop"
+              total={13}
+              color="info"
+              icon={<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}
+            />
+          </Grid>
+
+          <Grid item xs={12} sm={6} md={4}>
+            <AnalyticsWidgetSummary
+              title="SEO action required for Shop"
+              total={16}
+              color="error"
+              icon={<img alt="icon" src="/assets/icons/glass/ic_glass_message.png" />}
             />
           </Grid>
         </Grid>
 
-        <Card sx={{ mt:4 }}>
-          <ProductTableToolbar
+        <Card sx={{ mt: 4 }}>
+          <ShopsSeoTableToolbar
             filters={filters}
             onFilters={handleFilters}
             //
@@ -222,7 +358,7 @@ export default function ProductListView() {
           />
 
           {canReset && (
-            <ProductTableFiltersResult
+            <ShopsSeoTableFiltersResult
               filters={filters}
               onFilters={handleFilters}
               //
@@ -271,7 +407,7 @@ export default function ProductListView() {
                       table.page * table.rowsPerPage + table.rowsPerPage
                     )
                     .map((row) => (
-                      <ProductTableRow
+                      <ShopsSeoTableRow
                         key={row.id}
                         row={row}
                         selected={table.selected.includes(row.id)}
