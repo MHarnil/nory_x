@@ -35,7 +35,7 @@ const ChatHeader = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'space-between',
   padding: '12px 24px',
-  background: 'linear-gradient(90deg, #00796b 0%, #1a365d 100%)',
+  background: 'linear-gradient(90deg, #4cc9f0 0%, #1a365d 100%)',
   color: 'white',
   height: '50px'
 }));
@@ -99,13 +99,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const StyledSendButton = styled(IconButton)(({ theme }) => ({
-  backgroundColor: '#009688',
+  backgroundColor: '#4cc9f0',
   color: 'white',
   width: '40px',
   height: '40px',
   marginLeft: '8px',
   '&:hover': {
-    backgroundColor: '#00796b'
+    backgroundColor: '#00c4ff'
   },
   boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
   transition: 'all 0.2s ease-in-out',
@@ -211,12 +211,12 @@ const ChatApp = () => {
 
                 <Box
                   sx={{
-                    backgroundColor: msg.isUser ? 'white' : '#e0f2f1',
+                    backgroundColor: msg.isUser ? 'white' : '#cbe8f1',
                     padding: '12px 16px',
                     borderRadius: msg.isUser ? '12px 12px 0 12px' : '12px 12px 12px 0',
                     boxShadow: '0 1px 2px rgba(0, 0, 0, 0.05)',
                     border: '1px solid',
-                    borderColor: msg.isUser ? '#e0e0e0' : '#b2dfdb'
+                    borderColor: msg.isUser ? '#e0e0e0' : '#94def6'
                   }}
                 >
                   <Typography variant="body2">
