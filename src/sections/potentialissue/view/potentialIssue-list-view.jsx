@@ -198,6 +198,9 @@ export default function PotentialIssueListView() {
     },
     [table]
   );
+  const handleFilterPriority = (category) => {
+    handleFilters('priority', category)
+  };
 
   const handleResetFilters = useCallback(() => {
     setFilters(defaultFilters);
@@ -271,6 +274,7 @@ export default function PotentialIssueListView() {
               total={3}
               color="info"
               icon={<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}
+              onClick={()=>handleFilters('priority','High')}
             />
           </Grid>
 
@@ -280,6 +284,7 @@ export default function PotentialIssueListView() {
               total={8}
               color="warning"
               icon={<img alt="icon" src="/assets/icons/glass/ic_glass_buy.png" />}
+              onClick={()=>handleFilters('priority','Medium')}
             />
           </Grid>
 
@@ -289,6 +294,7 @@ export default function PotentialIssueListView() {
               total={3}
               color="error"
               icon={<img alt="icon" src="/assets/icons/glass/ic_glass_message.png" />}
+              onClick={()=>handleFilters('priority','Low')}
             />
           </Grid>
         </Grid>

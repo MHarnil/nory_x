@@ -52,88 +52,87 @@ const data = [
     id: 1,
     category: 'Revenue Maximization',
     insight: 'Available data from week 18 of May 2025 shows a decline in accessory bundle sales.',
-    strategy: 'Implement a "Complete the Set" promotion: Bundle accessories with main products.'
+    strategy: 'Implement a "Complete the Set" promotion: Bundle accessories with main products.',
   },
   {
     id: 2,
     category: 'Revenue Maximization',
     insight: 'The product "THE 3P FULFILLED SNOWBOARD" is frequently out of stock.',
-    strategy: 'Immediately investigate and restock "THE 3P FULFILLED SNOWBOARD" to meet demand.'
+    strategy: 'Immediately investigate and restock "THE 3P FULFILLED SNOWBOARD" to meet demand.',
   },
   {
     id: 3,
     category: 'Revenue Maximization',
     insight: 'Many snowboards have high inventory levels. Targeted marketing is underutilized.',
-    strategy: 'Run targeted advertising campaigns focusing on products with high inventory.'
+    strategy: 'Run targeted advertising campaigns focusing on products with high inventory.',
   },
   {
     id: 4,
     category: 'Cost Minimization',
     insight: 'Several snowboards have high on-hand inventory, risking overstock costs.',
-    strategy: 'Implement a tiered discount strategy to reduce on-hand inventory gradually.'
+    strategy: 'Implement a tiered discount strategy to reduce on-hand inventory gradually.',
   },
   {
     id: 5,
     category: 'Operational Efficiency',
     insight: 'Warehouse pick time increased by 12% in the last quarter.',
-    strategy: 'Optimize warehouse layout and retrain staff for improved picking efficiency.'
+    strategy: 'Optimize warehouse layout and retrain staff for improved picking efficiency.',
   },
   {
     id: 6,
     category: 'Revenue Maximization',
     insight: 'Customer reviews indicate a mismatch between product sizing and expectations.',
-    strategy: 'Update product sizing charts and include more visual size guides on product pages.'
+    strategy: 'Update product sizing charts and include more visual size guides on product pages.',
   },
   {
     id: 7,
     category: 'Customer Satisfaction',
     insight: 'Return rates for snow boots increased by 18% over the last two months.',
-    strategy: 'Analyze reasons for returns and improve product description accuracy.'
+    strategy: 'Analyze reasons for returns and improve product description accuracy.',
   },
   {
     id: 8,
     category: 'Cost Minimization',
     insight: 'Shipping costs spiked due to inefficient carrier allocation.',
-    strategy: 'Negotiate better contracts with carriers and optimize regional distribution.'
+    strategy: 'Negotiate better contracts with carriers and optimize regional distribution.',
   },
   {
     id: 9,
     category: 'Inventory Optimization',
     insight: 'Multiple SKUs show zero sales in the last 6 months.',
-    strategy: 'Consider phasing out low-performing SKUs to free up inventory space.'
+    strategy: 'Consider phasing out low-performing SKUs to free up inventory space.',
   },
   {
     id: 10,
     category: 'Revenue Maximization',
     insight: 'Email campaigns have low open rates despite high subscriber counts.',
-    strategy: 'Revise subject lines and segment the audience for personalized content.'
+    strategy: 'Revise subject lines and segment the audience for personalized content.',
   },
   {
     id: 11,
     category: 'Revenue Maximization',
     insight: 'Upsell opportunities are not shown on product pages.',
-    strategy: 'Add a “Frequently Bought Together” section to increase average order value.'
+    strategy: 'Add a “Frequently Bought Together” section to increase average order value.',
   },
   {
     id: 12,
     category: 'Customer Satisfaction',
     insight: 'Chat support response time exceeds industry average.',
-    strategy: 'Implement chatbot support during peak hours to reduce wait time.'
+    strategy: 'Implement chatbot support during peak hours to reduce wait time.',
   },
   {
     id: 13,
     category: 'Inventory Optimization',
     insight: 'Weekly stock audits reveal inconsistencies in reported vs. actual inventory.',
-    strategy: 'Upgrade inventory management software and increase audit frequency.'
+    strategy: 'Upgrade inventory management software and increase audit frequency.',
   },
   {
     id: 14,
     category: 'Cost Minimization',
     insight: 'Packaging waste contributes to rising disposal costs.',
-    strategy: 'Switch to recyclable materials and reduce unnecessary packaging layers.'
-  }
+    strategy: 'Switch to recyclable materials and reduce unnecessary packaging layers.',
+  },
 ];
-
 
 // ----------------------------------------------------------------------
 
@@ -157,6 +156,7 @@ const TABLE_HEAD = [
 const defaultFilters = {
   name: '',
   priority: 'all',
+  category: '',
 };
 
 // ----------------------------------------------------------------------
@@ -192,9 +192,11 @@ export default function BusinessInsightListView() {
 
   const denseHeight = table.dense ? 56 : 56 + 20;
 
-  const canReset = !!filters.name || filters.priority !== 'all';
+  const canReset = !!filters.name || filters.priority !== 'all' || filters.category !== '';
 
   const notFound = (!dataFiltered.length && canReset) || !dataFiltered.length;
+
+
 
   const handleFilters = useCallback(
     (name, value) => {
@@ -206,7 +208,10 @@ export default function BusinessInsightListView() {
     },
     [table]
   );
-
+  const handleFilterCategory = (category) => {
+    handleFilters('category', category)
+  };
+  console.log(filters,"hiy");
   const handleResetFilters = useCallback(() => {
     setFilters(defaultFilters);
   }, []);
@@ -244,12 +249,12 @@ export default function BusinessInsightListView() {
     [router]
   );
 
-  const handleFilterStatus = useCallback(
-    (event, newValue) => {
-      handleFilters('priority', newValue);
-    },
-    [handleFilters]
-  );
+  // const handleFilterStatus = useCallback(
+  //   (event, newValue) => {
+  //     handleFilters('priority', newValue);
+  //   },
+  //   [handleFilters]
+  // );
 
   return (
     <>
@@ -270,6 +275,10 @@ export default function BusinessInsightListView() {
               title="Insights"
               total={18}
               icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
+              onClick={() => {
+                handleFilterCategory('Insights');
+              }}
+              sx={{ cursor: 'pointer' }}
             />
           </Grid>
 
@@ -279,6 +288,10 @@ export default function BusinessInsightListView() {
               total={6}
               color="info"
               icon={<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}
+              onClick={() => {
+                handleFilterCategory('Revenue Maximization');
+              }}
+              sx={{ cursor: 'pointer' }}
             />
           </Grid>
 
@@ -288,6 +301,10 @@ export default function BusinessInsightListView() {
               total={6}
               color="warning"
               icon={<img alt="icon" src="/assets/icons/glass/ic_glass_buy.png" />}
+              onClick={() => {
+                handleFilterCategory('Cost Minimization');
+              }}
+              sx={{ cursor: 'pointer' }}
             />
           </Grid>
 
@@ -297,15 +314,19 @@ export default function BusinessInsightListView() {
               total={6}
               color="error"
               icon={<img alt="icon" src="/assets/icons/glass/ic_glass_message.png" />}
+              onClick={() => {
+                handleFilterCategory('Inventory Optimization');
+              }}
+              sx={{ cursor: 'pointer' }}
             />
           </Grid>
         </Grid>
 
-        <Box sx={{ p: 2, mt:4 }}>
+        <Box sx={{ p: 2, mt: 4 }}>
           <Typography variant="h6" gutterBottom>
             Insights & Strategy
           </Typography>
-          <Typography variant="body2" color="text.secondary" gutterBottom>
+          <Typography variant="body2" color="text-.secondary" gutterBottom>
             Here are some ways to enhance your business operations!
           </Typography>
         </Box>
@@ -431,7 +452,7 @@ export default function BusinessInsightListView() {
 // ----------------------------------------------------------------------
 
 function applyFilter({ inputData, comparator, filters, dateError }) {
-  const { priority, name } = filters;
+  const { priority, name,category } = filters;
 
   const stabilizedThis = inputData.map((el, index) => [el, index]);
 
@@ -451,6 +472,8 @@ function applyFilter({ inputData, comparator, filters, dateError }) {
 
   if (priority !== 'all') {
     inputData = inputData.filter((item) => item.priority === priority);
+  } if (category) {
+    inputData = inputData.filter((item) => item.category === category);
   }
 
   return inputData;

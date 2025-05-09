@@ -27,6 +27,10 @@ export default function BusinessInsightTableFiltersResult({
     onFilters('name', '');
   }, [onFilters]);
 
+  const handleRemoveCategory = useCallback(() => {
+    onFilters('category', '');
+  }, [onFilters]);
+
   const handleRemoveStatus = useCallback(() => {
     onFilters('priority', 'all');
   }, [onFilters]);
@@ -41,17 +45,16 @@ export default function BusinessInsightTableFiltersResult({
       </Box>
 
       <Stack flexGrow={1} spacing={1} direction="row" flexWrap="wrap" alignItems="center">
-        {filters.priority !== 'all' && (
-          <Block label="Priority:">
-            <Chip size="small" label={filters.priority} onDelete={handleRemoveStatus} />
+        {filters.category  && (
+          <Block label="Category:">
+            <Chip size="small" label={filters.category} onDelete={handleRemoveCategory} />
           </Block>
         )}
-
         {!!filters.name && (
           <Block label="Keyword:">
             <Chip label={filters.name} size="small" onDelete={handleRemoveKeyword} />
           </Block>
-        )}
+        )}{' '}
 
         <Button
           color="error"
