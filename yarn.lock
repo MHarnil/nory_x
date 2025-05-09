@@ -4983,6 +4983,11 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
+lucide-react@^0.508.0:
+  version "0.508.0"
+  resolved "https://registry.npmjs.org/lucide-react/-/lucide-react-0.508.0.tgz"
+  integrity sha512-gcP16PnexqtOFrTtv98kVsGzTfnbPekzZiQfByi2S89xfk7E/4uKE1USZqccIp58v42LqkO7MuwpCqshwSrJCg==
+
 mapbox-gl@^3.0.1:
   version "3.0.1"
   resolved "https://registry.npmjs.org/mapbox-gl/-/mapbox-gl-3.0.1.tgz"

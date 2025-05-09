@@ -53,6 +53,7 @@
     "i18next": "^23.7.8",
     "i18next-browser-languagedetector": "^7.2.0",
     "lodash": "^4.17.21",
+    "lucide-react": "^0.508.0",
     "mapbox-gl": "^3.0.1",
     "mui-one-time-password-input": "^2.0.1",
     "notistack": "^3.0.1",
